@@ -12,6 +12,7 @@ import Sample
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    let test5:String="test5"
 
     var body: some View {
         NavigationSplitView {
