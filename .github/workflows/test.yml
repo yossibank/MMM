@@ -52,6 +52,7 @@ jobs:
       - name: Xcode Test
         run: set -o pipefail &&
           xcodebuild
+          -workspace MMM.xcworkspace
           -sdk iphonesimulator
           -configuration Debug
           -scheme MMM
