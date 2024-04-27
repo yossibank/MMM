@@ -1,7 +1,6 @@
 public final class SampleClass {
-    func sample() -> String
-        {
-            "sample"
+    func sample() -> String {
+        "sample"
     }
 }
 
