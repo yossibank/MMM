@@ -33,6 +33,21 @@ jobs:
       - name: Show Simulator List
         run: xcrun simctl list devices
 
+      # Gemsのキャッシュ
+      - name: Cache Gems
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      # Gemsのインストール
+      - name: Install Bundled Gems
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
       # ビルド
       - name: Xcode Build
         run: set -o pipefail &&
@@ -40,4 +55,6 @@ jobs:
           -sdk iphonesimulator
           -configuration Debug
           -scheme MMM
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2'
           build
+          | bundle exec xcpretty
