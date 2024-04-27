@@ -52,9 +52,10 @@ jobs:
       - name: Xcode Build
         run: set -o pipefail &&
           xcodebuild
+          -workspace MMM.xcworkspace
           -sdk iphonesimulator
           -configuration Debug
-          -scheme MMM
+          -scheme Debug
           -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2'
           build
           | bundle exec xcpretty

@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "14B008B5-17AC-4563-AF94-7355EA861701",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "language" : "ja",
+    "locationScenario" : {
+      "identifier" : "Tokyo, Japan",
+      "referenceType" : "built-in"
+    },
+    "region" : "JP",
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MMM.xcodeproj",
+      "identifier" : "787A89B92BDC783E000F4335",
+      "name" : "MMM"
+    },
+    "testExecutionOrdering" : "random",
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "SampleTests",
+        "name" : "SampleTests"
+      }
+    }
+  ],
+  "version" : 1
+}

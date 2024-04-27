@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Demo/SampleDemo.swiftpm">
+   </FileRef>
+   <FileRef
+      location = "group:MMM/MMM.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Package">
+   </FileRef>
+</Workspace>
