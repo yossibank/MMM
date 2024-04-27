@@ -22,6 +22,7 @@ ignored_rule_ids = [
 ]
 
 swiftlint.config_file = ".swiftlint.yml"
+
 swiftlint.lint_files(inline_mode: true) do |violation|
     !ignored_rule_ids.include?(violation["rule_id"])
 end
