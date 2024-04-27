@@ -23,7 +23,8 @@ targets:
     type: application
     platform: iOS
     sources:
-      - MMM
+      - path: MMM
+        excludes: [Info.plist]
     settings:
       base:
         DEVELOPMENT_LANGUAGE: jp
