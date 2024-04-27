@@ -8,6 +8,5 @@ xcov.report(
     workspace: "MMM.xcworkspace",
     scheme: "Debug",
     xccov_file_direct_path: "action.xccovreport",
-    only_project_targets: false,
-    include_targets: "SampleTests"
+    include_test_targets: true
 )

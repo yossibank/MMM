@@ -13,10 +13,6 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
-    let content:Void = {
-        print("abx")
-    }()
-
     var body: some View {
         NavigationSplitView {
             List {
