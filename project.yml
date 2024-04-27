@@ -1,0 +1,68 @@
+name: MMM
+
+settings:
+  base:
+    MARKETING_VERSION: &marketing_version 1.0.0
+    CURRENT_PROJECT_VERSION: &project_version 1.0
+    DEVELOPMENT_TEAM: 6WHPY5MQSB
+  configs:
+    debug:
+      DEBUG_INFORMATION_FORMAT: "dwarf-with-dsym"
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+    release:
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: RELEASE
+
+options:
+  bundleIdPrefix: yossibank-yahoo.co.jp
+  developmentLanguage: ja
+  deploymentTarget:
+    iOS: 17.0
+
+targets:
+  App:
+    type: application
+    platform: iOS
+    sources:
+      - MMM
+    settings:
+      base:
+        DEVELOPMENT_LANGUAGE: jp
+        OTHER_LDFLAGS: $(inherited) $(OTHER_LDFLAGS) -ObjC
+
+schemeTemplates:
+  Scheme:
+    build:
+      targets:
+        App: all
+
+schemes:
+  Debug:
+    templates:
+      - Scheme
+    build:
+      config: Debug
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Debug
+    analyze:
+      config: Debug
+    archive:
+      config: Debug
+  Release:
+    templates:
+      - Scheme
+    build:
+      config: Release
+    run:
+      config: Release
+    test:
+      config: Release
+    profile:
+      config: Release
+    analyze:
+      config: Release
+    archive:
+      config: Release
