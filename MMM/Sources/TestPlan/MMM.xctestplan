@@ -26,7 +26,7 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:Package",
+        "containerPath" : "container:..\/Package",
         "identifier" : "SampleTests",
         "name" : "SampleTests"
       }

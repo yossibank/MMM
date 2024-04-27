@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "group:Demo"
-      name = "Demo">
-      <FileRef
-         location = "group:SampleDemo.swiftpm">
-      </FileRef>
-   </Group>
    <FileRef
-      location = "group:MMM.xcodeproj">
+      location = "group:Demo/SampleDemo.swiftpm">
+   </FileRef>
+   <FileRef
+      location = "group:MMM/MMM.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Package">
