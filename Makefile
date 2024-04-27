@@ -21,12 +21,9 @@ generate-xcodeproj:
 
 .PHONY: open
 open:
-	open ./MMM/$(PRODUCT_NAME).xcodeproj
+	open ./$(PRODUCT_NAME).xcworkspace
 
 .PHONY: clean
 clean:
-	sudo rm -rf ~/Library/Developer/Xcode/DerivedData/*
-	sudo rm -rf ~/Library/Developer/Xcode/Archives/*
-	sudo rm -rf ~/Library/Caches/*
-	sudo rm -rf ~/Library/Logs/iOS\ Simulator
-	sudo rm -rf ~/Library/Developer/Xcode/iOS\ DeviceSupport/*
+	find . -type d \( -name \*.xcodeproj \) | xargs rm -rf
+	rm -rf $${HOME}/Library/Developer/Xcode/DerivedData
