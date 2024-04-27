@@ -51,11 +51,6 @@ GEM
       no_proxy_fix
       octokit (>= 4.0)
       terminal-table (>= 1, < 4)
-    danger-periphery (0.3.1)
-      danger-plugin-api (~> 1.0)
-      rubyzip (~> 2.0)
-    danger-plugin-api (1.0.0)
-      danger (> 2.0)
     danger-swiftlint (0.35.0)
       danger
       rake (> 10)
@@ -273,7 +268,6 @@ PLATFORMS
 
 DEPENDENCIES
   danger
-  danger-periphery
   danger-swiftlint
   danger-xcov
   xcpretty
