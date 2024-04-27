@@ -5,7 +5,9 @@ import PackageDescription
 
 // MARK: - Package
 
-let sample = Target.target(name: "Sample")
+let sample = Target.target(
+    name: "Sample"
+)
 
 // MARK: - Test Package
 

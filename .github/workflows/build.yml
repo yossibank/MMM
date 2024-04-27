@@ -8,6 +8,12 @@ on:
     branches:
       - '*'
 
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  statuses: write
+
 env:
   DEVELOPER_DIR: /Applications/Xcode_15.3.app
 
@@ -33,6 +39,17 @@ jobs:
       - name: Show Simulator List
         run: xcrun simctl list devices
 
+      # Gemsのインストール
+      - name: Install Bundled Gems
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      # Mintインストール
+      - name: Install Mint
+        run: |
+          brew install mint
+
       # Gemsのキャッシュ
       - name: Cache Gems
         uses: actions/cache@v4
@@ -42,11 +59,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      # Gemsのインストール
-      - name: Install Bundled Gems
+      # Mintで管理しているライブラリのキャッシュ
+      - name: Cache Mint Packages
+        uses: actions/cache@v4
+        with:
+          path: mint
+          key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+          restore-keys: |
+            ${{ runner.os }}-mint-
+
+      # プロジェクトファイル設定
+      - name: Setting Xcode Project
         run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          make setup
 
       # ビルド
       - name: Xcode Build
@@ -57,5 +82,17 @@ jobs:
           -configuration Debug
           -scheme Debug
           -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2'
+          -clonedSourcePackagesDirPath SourcePackages
+          -derivedDataPath DerivedData
           build
           | bundle exec xcpretty
+
+      # Danger実行
+      - uses: MeilCli/danger-action@v6.0.3
+        with:
+          plugins_file: "Gemfile"
+          install_path: "vendor/bundle"
+          danger_file: "Danger/Buildfile"
+          danger_id: "Build"
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

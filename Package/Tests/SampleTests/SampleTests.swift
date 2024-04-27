@@ -1,8 +1,22 @@
 import XCTest
 @testable import Sample
 
-final class PackageTests: XCTestCase {
+final class SampleTests: XCTestCase {
+    private var sampleClass: SampleClass!
+
+    override func setUp() {
+        super.setUp()
+
+        sampleClass = .init()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+
+        sampleClass = nil
+    }
+
     func test_sample() {
-        XCTAssertEqual(SampleClass.test1, "test1")
+        XCTAssertEqual(sampleClass.sample(), "sample")
     }
 }

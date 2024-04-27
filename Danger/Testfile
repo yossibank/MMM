@@ -1,0 +1,12 @@
+### 対象コード以外についてのメッセージは除く ###
+github.dismiss_out_of_range_messages
+
+### コードカバレッジ ###
+system("mint run xcparse codecov Test/MMM.xcresult ./")
+
+xcov.report(
+    workspace: "MMM.xcworkspace",
+    scheme: "Debug",
+    xccov_file_direct_path: "action.xccovreport",
+    only_project_targets: false
+)
