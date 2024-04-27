@@ -15,13 +15,13 @@ install-bundler:
 install-mint-packages:
 	mint bootstrap --overwrite y
 
-.PHONY: open
-open:
-	open ./$(PRODUCT_NAME).xcodeproj
-
 .PHONY: generate-xcodeproj
 generate-xcodeproj:
-	mint run xcodegen
+	mint run xcodegen --project MMM
+
+.PHONY: open
+open:
+	open ./MMM/$(PRODUCT_NAME).xcodeproj
 
 .PHONY: clean
 clean:

@@ -21,17 +21,23 @@ options:
   deploymentTarget:
     iOS: 17.0
 
+packages:
+  Package:
+    path: ./Package
+
 targets:
   App:
     type: application
     platform: iOS
     sources:
-      - path: MMM
+      - path: ./MMM/Sources
         excludes: [Info.plist]
     settings:
       base:
         DEVELOPMENT_LANGUAGE: jp
         OTHER_LDFLAGS: $(inherited) $(OTHER_LDFLAGS) -ObjC
+    dependencies:
+      - package: Package
 
 schemeTemplates:
   Scheme:
