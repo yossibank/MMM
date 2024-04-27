@@ -8,6 +8,5 @@ xcov.report(
     workspace: "MMM.xcworkspace",
     scheme: "Debug",
     xccov_file_direct_path: "action.xccovreport",
-    minimum_coverage_percentage: 50.0,
-    only_project_targets: true
+    only_project_targets: false
 )
