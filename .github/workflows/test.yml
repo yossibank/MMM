@@ -48,6 +48,20 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
+      # Mintで管理しているライブラリのキャッシュ
+      - name: Cache Mint Packages
+        uses: actions/cache@v4
+        with:
+          path: mint
+          key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+          restore-keys: |
+            ${{ runner.os }}-mint-
+
+      # Mintインストール
+      - name: Install Mint
+        run: |
+          brew install mint
+
       # テスト
       - name: Xcode Test
         run: set -o pipefail &&
@@ -58,5 +72,24 @@ jobs:
           -scheme Debug
           -testPlan 'MMM'
           -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2'
+          -clonedSourcePackagesDirPath SourcePackages
+          -resultBundlePath Test/MMM.xcresult
+          -derivedDataPath DerivedData
           clean test
           | bundle exec xcpretty --report html
+
+      # Danger実行
+      - uses: MeilCli/danger-action@v6.0.3
+        with:
+          plugins_file: "Gemfile"
+          install_path: "vendor/bundle"
+          danger_file: "Danger/Testfile"
+          danger_id: "Test"
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # テスト結果のアップロード
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: Test/report.html
