@@ -3,4 +3,3 @@ public final class SampleClass {
         "sample"
     }
 }
-
