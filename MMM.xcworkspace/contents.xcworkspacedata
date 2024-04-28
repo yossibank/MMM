@@ -5,6 +5,9 @@
       location = "group:Demo/SampleDemo.swiftpm">
    </FileRef>
    <FileRef
+      location = "group:Demo/ChartDemo.swiftpm">
+   </FileRef>
+   <FileRef
       location = "group:MMM/MMM.xcodeproj">
    </FileRef>
    <FileRef
