@@ -8,20 +8,20 @@ import AppleProductTypes
 import PackageDescription
 
 let package = Package(
-    name: "SampleDemo",
+    name: "ChartDemo",
     platforms: [
         .iOS("17.0")
     ],
     products: [
         .iOSApplication(
-            name: "SampleDemo",
-            targets: ["SampleDemo"],
-            bundleIdentifier: "yossibank-yahoo.co.jp.SampleDemo",
+            name: "ChartDemo",
+            targets: ["ChartDemo"],
+            bundleIdentifier: "yossibank-yahoo.co.jp.ChartDemo",
             teamIdentifier: "6WHPY5MQSB",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .heart),
-            accentColor: .presetColor(.teal),
+            accentColor: .presetColor(.mint),
             supportedDeviceFamilies: [
                 .pad,
                 .phone
@@ -39,14 +39,11 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "SampleDemo",
+            name: "ChartDemo",
             dependencies: [
                 .product(name: "Sample", package: "Package", condition: nil)
             ],
-            path: "Sources",
-            resources: [
-                .process("Resources")
-            ]
+            path: "Sources"
         )
     ]
 )
