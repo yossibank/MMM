@@ -1,0 +1,42 @@
+name: Update Package.resolved for Renovate
+
+on:
+  pull_request:
+    types:
+      - opened
+    paths:
+      - "**/Package.swift"
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.3.app
+  SPM_CACHE_PATH: SPMCaches
+
+jobs:
+  update-package-resolved:
+    if: startsWith(github.head_ref, 'renovate/')
+
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Cache Swift Packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.SPM_CACHE_PATH }}
+          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
+
+      - name: Update Package.resolved
+        run: |
+          xcodebuild -resolvePackageDependencies -workspace MMM.xcworkspace -scheme Debug -clonedSourcePackagesDirPath "$SPM_CACHE_PATH"
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Update Package.resolved"
+          git push
