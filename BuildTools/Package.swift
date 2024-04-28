@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "BuildTools",
     dependencies: [
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.53.8")
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.53.7")
     ],
     targets: [
         .target(
