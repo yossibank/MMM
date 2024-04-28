@@ -77,7 +77,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: SourcePackages
-          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
 
       # プロジェクトファイル設定
