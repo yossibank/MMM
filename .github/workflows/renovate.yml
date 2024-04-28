@@ -1,4 +1,4 @@
-name: Update Package.resolved for Renovate
+name: Renovate
 
 on:
   pull_request:
@@ -6,6 +6,12 @@ on:
       - opened
     paths:
       - "**/Package.swift"
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  statuses: write
 
 env:
   DEVELOPER_DIR: /Applications/Xcode_15.3.app
@@ -35,7 +41,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Update Package.resolved"
