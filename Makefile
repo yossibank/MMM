@@ -14,6 +14,15 @@ install-bundler:
 install-mint-packages:
 	mint bootstrap --overwrite y
 
+.PHONY: run-format
+run-format:
+	swift run --package-path BuildTools swiftformat .
+
+.PHONY: run-gitHooks
+run-gitHooks:
+	chmod +x GitHooks/pre-commit
+	git config --local core.hooksPath GitHooks
+
 .PHONY: open
 open:
 	open ./$(PRODUCT_NAME).xcworkspace
