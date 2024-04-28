@@ -1,5 +1,7 @@
 public final class SampleClass {
-    func sample() -> String {
+    public init() {}
+
+    public func sample() -> String {
         "sample"
     }
 }

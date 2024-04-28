@@ -1,18 +1,11 @@
-//
-//  MMMApp.swift
-//  MMM
-//
-//  Created by Kamiyama Yoshihito on 2024/04/27.
-//
-
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct MMMApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Item.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

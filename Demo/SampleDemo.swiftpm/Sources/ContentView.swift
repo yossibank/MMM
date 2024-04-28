@@ -1,5 +1,5 @@
-import SwiftUI
 import Sample
+import SwiftUI
 
 struct ContentView: View {
     var body: some View {
@@ -7,7 +7,7 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text(SampleClass.test1)
+            Text(SampleClass().sample())
         }
     }
 }
