@@ -9,11 +9,16 @@ let sample = Target.target(
     name: "Sample"
 )
 
+let mock = Target.target(
+    name: "Mock",
+    dependencies: [sample]
+)
+
 // MARK: - Test Package
 
 let sampleTests = Target.testTarget(
     name: "SampleTests",
-    dependencies: [sample]
+    dependencies: [sample, mock]
 )
 
 // MARK: - Target
@@ -23,8 +28,15 @@ let package = Package.package(
     platforms: [
         .iOS(.v17)
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/nicklockwood/SwiftFormat",
+            from: "0.53.8"
+        )
+    ],
     targets: [
-        sample
+        sample,
+        mock
     ],
     testTargets: [
         sampleTests
