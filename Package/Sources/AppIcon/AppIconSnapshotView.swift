@@ -7,28 +7,21 @@ public struct AppIconSnapshotView: View {
 
     private let iconName: String
     private let iconColor: Color
-    private let iconType: AppIconType
 
     public init(
         iconName: String,
-        iconColor: Color,
-        iconType: AppIconType
+        iconColor: Color
     ) {
         self.iconName = iconName
         self.iconColor = iconColor
-        self.iconType = iconType
     }
 
     public var body: some View {
         VStack {
             Spacer()
 
-            AppIconView(
-                iconName: iconName,
-                iconColor: iconColor,
-                iconType: iconType
-            )
-            .frame(width: 300, height: 300)
+            AppIconView(iconName: iconName, iconColor: iconColor)
+                .frame(width: 300, height: 300)
 
             Text(iconName)
                 .font(.headline)
@@ -52,14 +45,10 @@ public struct AppIconSnapshotView: View {
             )
 
             let hostingController = UIHostingController(
-                rootView: AppIconView(
-                    iconName: iconName,
-                    iconColor: iconColor,
-                    iconType: iconType
-                )
-                .frame(width: viewSize.width, height: viewSize.height)
-                .offset(.init(width: .zero, height: -12))
-                .background(iconColor)
+                rootView: AppIconView(iconName: iconName, iconColor: iconColor)
+                    .frame(width: viewSize.width, height: viewSize.height)
+                    .offset(.init(width: .zero, height: -12))
+                    .background(iconColor)
             )
 
             hostingController.view.frame = .init(origin: .zero, size: viewSize)
@@ -116,9 +105,5 @@ private extension UIViewController {
 }
 
 #Preview {
-    AppIconSnapshotView(
-        iconName: "m.square.fill",
-        iconColor: .black,
-        iconType: .debug
-    )
+    AppIconSnapshotView(iconName: "m.square.fill", iconColor: .black)
 }

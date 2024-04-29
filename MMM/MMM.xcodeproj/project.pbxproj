@@ -17,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		783F3C5A2BDFC6EE008C6715 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		783F3C5B2BDFC733008C6715 /* AdHoc.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AdHoc.xcconfig; sourceTree = "<group>"; };
+		783F3C5C2BDFC74A008C6715 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		787A89BA2BDC783E000F4335 /* MMM(Debug).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMM(Debug).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		787A89BD2BDC783E000F4335 /* MMMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMMApp.swift; sourceTree = "<group>"; };
 		787A89BF2BDC783E000F4335 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -39,6 +42,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		783F3C592BDFC6D3008C6715 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				783F3C5A2BDFC6EE008C6715 /* Debug.xcconfig */,
+				783F3C5B2BDFC733008C6715 /* AdHoc.xcconfig */,
+				783F3C5C2BDFC74A008C6715 /* Release.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		783F3C5D2BDFC845008C6715 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				787A89C32BDC783F000F4335 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		783F3C5E2BDFC885008C6715 /* Resource Preview */ = {
+			isa = PBXGroup;
+			children = (
+				787A89C62BDC783F000F4335 /* Preview Assets.xcassets */,
+			);
+			path = "Resource Preview";
+			sourceTree = "<group>";
+		};
 		787A89B12BDC783E000F4335 = {
 			isa = PBXGroup;
 			children = (
@@ -62,19 +91,12 @@
 				787A89BD2BDC783E000F4335 /* MMMApp.swift */,
 				787A89BF2BDC783E000F4335 /* ContentView.swift */,
 				787A89C12BDC783E000F4335 /* Item.swift */,
-				787A89C32BDC783F000F4335 /* Assets.xcassets */,
+				783F3C592BDFC6D3008C6715 /* Configuration */,
+				783F3C5D2BDFC845008C6715 /* Resource */,
+				783F3C5E2BDFC885008C6715 /* Resource Preview */,
 				7896A3FB2BDCE81900C52133 /* TestPlan */,
-				787A89C52BDC783F000F4335 /* Preview Content */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		787A89C52BDC783F000F4335 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				787A89C62BDC783F000F4335 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		7896A3F72BDCE73400C52133 /* Frameworks */ = {
@@ -233,13 +255,14 @@
 		};
 		7855825C2BDF4EE300221A90 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 783F3C5B2BDFC733008C6715 /* AdHoc.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AdHoc";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(MMM_APP_ICON)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Kamiyama Yoshihito";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Resource Preview\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6WHPY5MQSB;
 				ENABLE_PREVIEWS = YES;
@@ -257,7 +280,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yossibank.mmm.adhoc;
-				PRODUCT_NAME = "$(TARGET_NAME)(AdHoc)";
+				PRODUCT_NAME = "$(MMM_APP_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.yossibank.mmm.adhoc";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AdHoc com.yossibank.mmm.adhoc";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -391,13 +414,14 @@
 		};
 		787A89E12BDC7840000F4335 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 783F3C5A2BDFC6EE008C6715 /* Debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Debug";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(MMM_APP_ICON)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Resource Preview\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6WHPY5MQSB;
 				ENABLE_PREVIEWS = YES;
@@ -415,7 +439,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yossibank.mmm.development;
-				PRODUCT_NAME = "$(TARGET_NAME)(Debug)";
+				PRODUCT_NAME = "$(MMM_APP_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.yossibank.mmm.development";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -430,13 +454,14 @@
 		};
 		787A89E22BDC7840000F4335 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 783F3C5C2BDFC74A008C6715 /* Release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(MMM_APP_ICON)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Kamiyama Yoshihito";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Resource Preview\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6WHPY5MQSB;
 				ENABLE_PREVIEWS = YES;
@@ -454,7 +479,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yossibank.mmm;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(MMM_APP_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.yossibank.mmm";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.yossibank.mmm";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
