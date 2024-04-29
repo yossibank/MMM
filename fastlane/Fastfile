@@ -1,0 +1,84 @@
+fastlane_require "dotenv"
+
+default_platform(:ios)
+
+platform :ios do
+  desc "環境変数"
+  before_all do
+    Dotenv.overload ".env"
+
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "100"
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "10"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"] = ENV["APPLICATION_SPECIFIC_PASSWORD"]
+  end
+
+  desc "テスト実行"
+  lane :test do
+    scan(
+      workspace: 'MMM.xcworkspace',
+      configuration: "Debug",
+      scheme: "Debug",
+      device: "iPhone 15 (17.2)",
+      result_bundle: true,
+      output_directory: "build",
+      cloned_source_packages_path: "SourcePackages",
+      derived_data_path: "DerivedData",
+      clean: true
+    )
+  end
+
+  desc "開発者用証明書作成・更新"
+  lane :make_development_certificates do
+    match(
+      type: "development",
+      app_identifier: ["com.yossibank.mmm.development"],
+      force_for_new_devices: true,
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+    )
+  end
+
+  desc "開発者用証明書取得"
+  lane :retrieve_development_certificates do
+    match(
+      type: "development",
+      app_identifier: ["com.yossibank.mmm.development"],
+      readonly: true
+    )
+  end
+
+  desc "本番用証明書作成・更新"
+  lane :make_appstore_certificates do
+    match(
+      type: "appstore",
+      app_identifier: ["com.yossibank.mmm"],
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+    )
+  end
+
+  desc "本番用Code Signing設定"
+  lane :setting_appstore_code_signing do
+    update_code_signing_settings(
+      path: "MMM/MMM.xcodeproj",
+      targets: "MMM",
+      build_configurations: "Release",
+      code_sign_identity: "Apple Distribution: Kamiyama Yoshihito",
+      profile_name: "match AppStore com.yossibank.mmm",
+      bundle_identifier: "com.yossibank.mmm"
+    )
+  end
+
+  desc "本番用ipa出力"
+  lane :output_appstore_ipa do
+    setting_appstore_code_signing
+
+    gym(
+      workspace: "MMM.xcworkspace",
+      scheme: "Release",
+      configuration: "Release",
+      output_directory: "./ipa",
+      output_name: "MMM_appstore.ipa",
+      export_method: "app-store",
+      clean: true
+    )
+  end
+end

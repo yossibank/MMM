@@ -270,6 +270,8 @@ DEPENDENCIES
   danger
   danger-swiftlint
   danger-xcov
+  dotenv
+  fastlane
   xcpretty
 
 BUNDLED WITH

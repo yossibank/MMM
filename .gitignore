@@ -94,3 +94,9 @@ iOSInjectionProject/
 
 # Mockolo
 *MockResults.swift
+
+# ENV
+.env
+
+# Local
+SourcePackages
