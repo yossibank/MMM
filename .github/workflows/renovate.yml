@@ -18,8 +18,10 @@ env:
   SPM_CACHE_PATH: SPMCaches
 
 jobs:
-  update-package-resolved:
+  ci:
     if: startsWith(github.head_ref, 'renovate/')
+
+    name: Run Renovate
 
     runs-on: macos-latest
 
