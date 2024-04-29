@@ -29,10 +29,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: File changes
-          id: file_changes
-          uses: trilom/file-changes-action@v1.2.4
-          with:
-            output: ','
+        id: file_changes
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ','
+
   update:
     runs-on: macos-latest
 
