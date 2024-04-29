@@ -74,6 +74,10 @@ let snapkit = Target.Dependency.product(
 
 // MARK: - Package
 
+let appIcon = Target.target(
+    name: "AppIcon"
+)
+
 let sample = Target.target(
     name: "Sample",
     dependencies: [snapkit]
@@ -109,6 +113,7 @@ let package = Package.package(
         )
     ],
     targets: [
+        appIcon,
         sample,
         mock
     ],
