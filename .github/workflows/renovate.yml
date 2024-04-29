@@ -2,10 +2,10 @@ name: Renovate
 
 on:
   pull_request:
-    types:
-      - opened
+    types: [opened, synchronize, reopened]
     paths:
       - "**/Package.swift"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,40 +15,47 @@ permissions:
 
 env:
   DEVELOPER_DIR: /Applications/Xcode_15.3.app
-  SPM_CACHE_PATH: SPMCaches
 
 jobs:
-  ci:
-    if: startsWith(github.head_ref, 'renovate/')
-
-    name: Run Renovate
-
+  preupdate:
     runs-on: macos-latest
+
+    outputs:
+      files_changed: ${{ steps.file_changes.outputs.files }}
+
+    if: contains(github.head_ref, 'renovate')
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: File changes
+          id: file_changes
+          uses: trilom/file-changes-action@v1.2.4
+          with:
+            output: ','
+  update:
+    runs-on: macos-latest
+
+    needs: preupdate
+
+    if: contains(needs.preupdate.outputs.files_changed, 'Package.resolved') == false
 
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Cache Swift Packages
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.SPM_CACHE_PATH }}
-          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
-          restore-keys: ${{ runner.os }}-spm-
-
-      - name: Update Package.resolved
+      - name: Resolve package dependencies
         run: |
-          xcodebuild -resolvePackageDependencies -workspace MMM.xcworkspace -scheme Debug -clonedSourcePackagesDirPath "$SPM_CACHE_PATH"
+          xcodebuild -resolvePackageDependencies -workspace MMM.xcworkspace -scheme Debug
 
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add .
-
-          if ! git diff --exit-code --quiet
-          then
-            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git commit -m "Update Package.resolved"
-            git push
-          fi
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add Package.resolvedのファイルパス
+          git commit -m "[Renovate] Updated Package.resolved."
+          git clean -df
+          git push
