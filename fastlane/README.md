@@ -33,13 +33,13 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 開発者用証明書作成・更新
 
-### ios retrieve_development_certificates
+### ios make_adhoc_certificates
 
 ```sh
-[bundle exec] fastlane ios retrieve_development_certificates
+[bundle exec] fastlane ios make_adhoc_certificates
 ```
 
-開発者用証明書取得
+検証用証明書作成・更新
 
 ### ios make_appstore_certificates
 
@@ -49,13 +49,37 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 本番用証明書作成・更新
 
+### ios retrieve_development_certificates
+
+```sh
+[bundle exec] fastlane ios retrieve_development_certificates
+```
+
+開発者用証明書取得
+
+### ios setting_adhoc_code_signing
+
+```sh
+[bundle exec] fastlane ios setting_adhoc_code_signing
+```
+
+検証用 Code Signing 設定
+
 ### ios setting_appstore_code_signing
 
 ```sh
 [bundle exec] fastlane ios setting_appstore_code_signing
 ```
 
-本番用Code Signing設定
+本番用 Code Signing 設定
+
+### ios output_adhoc_ipa
+
+```sh
+[bundle exec] fastlane ios output_adhoc_ipa
+```
+
+検証用 ipa 出力
 
 ### ios output_appstore_ipa
 
@@ -63,7 +87,15 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios output_appstore_ipa
 ```
 
-本番用ipa出力
+本番用 ipa 出力
+
+### ios upload_adhoc_deploygate
+
+```sh
+[bundle exec] fastlane ios upload_adhoc_deploygate
+```
+
+検証用アプリを Deploygate へアップロード
 
 ----
 

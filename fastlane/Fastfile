@@ -37,12 +37,13 @@ platform :ios do
     )
   end
 
-  desc "開発者用証明書取得"
-  lane :retrieve_development_certificates do
+  desc "検証用証明書作成・更新"
+  lane :make_adhoc_certificates do
     match(
-      type: "development",
-      app_identifier: ["com.yossibank.mmm.development"],
-      readonly: true
+      type: "adhoc",
+      app_identifier: ["com.yossibank.mmm.adhoc"],
+      force_for_new_devices: true,
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
     )
   end
 
@@ -55,7 +56,28 @@ platform :ios do
     )
   end
 
-  desc "本番用Code Signing設定"
+  desc "開発者用証明書取得"
+  lane :retrieve_development_certificates do
+    match(
+      type: "development",
+      app_identifier: ["com.yossibank.mmm.development"],
+      readonly: true
+    )
+  end
+
+  desc "検証用 Code Signing 設定"
+  lane :setting_adhoc_code_signing do
+    update_code_signing_settings(
+      path: "MMM/MMM.xcodeproj",
+      targets: "MMM",
+      build_configurations: "AdHoc",
+      code_sign_identity: "Apple Distribution: Kamiyama Yoshihito",
+      profile_name: "match AdHoc com.yossibank.mmm.adhoc",
+      bundle_identifier: "com.yossibank.mmm.adhoc"
+    )
+  end
+
+  desc "本番用 Code Signing 設定"
   lane :setting_appstore_code_signing do
     update_code_signing_settings(
       path: "MMM/MMM.xcodeproj",
@@ -67,7 +89,23 @@ platform :ios do
     )
   end
 
-  desc "本番用ipa出力"
+  desc "検証用 ipa 出力"
+  lane :output_adhoc_ipa do
+    setting_adhoc_code_signing
+
+    gym(
+      workspace: "MMM.xcworkspace",
+      scheme: "AdHoc",
+      configuration: "AdHoc",
+      output_directory: "./ipa",
+      output_name: "MMM_adhoc.ipa",
+      export_method: "ad-hoc",
+      clean: true
+    )
+  end
+
+
+  desc "本番用 ipa 出力"
   lane :output_appstore_ipa do
     setting_appstore_code_signing
 
@@ -79,6 +117,37 @@ platform :ios do
       output_name: "MMM_appstore.ipa",
       export_method: "app-store",
       clean: true
+    )
+  end
+
+  desc "検証用アプリを Deploygate へアップロード"
+  lane :upload_adhoc_deploygate do
+    commit_hash = sh("git rev-parse --short HEAD").strip
+
+    temp_file = "/tmp/deploygate_message.txt"
+    File.write(temp_file, "")
+
+    sh("open -t #{temp_file}")
+
+    initial_modification_time = File.mtime(temp_file)
+
+    loop do
+      sleep(1)
+      current_modification_time = File.mtime(temp_file)
+      break if current_modification_time > initial_modification_time
+    end
+
+    message = File.read(temp_file).strip
+    message = "Deploygate" if message.empty?
+    message = "#{commit_hash}\n#{message}"
+
+    output_adhoc_ipa
+
+    deploygate(
+      api_token: ENV["DEPLOYGATE_API_TOKEN"],
+      user: ENV["DEPLOYGATE_USER"],
+      ipa: "./ipa/MMM_adhoc.ipa",
+      message: message
     )
   end
 end
