@@ -105,7 +105,7 @@ let package = Package.package(
         ),
         .package(
             url: "https://github.com/SnapKit/SnapKit.git",
-            from: "5.7.0"
+            from: "5.7.1"
         )
     ],
     targets: [
