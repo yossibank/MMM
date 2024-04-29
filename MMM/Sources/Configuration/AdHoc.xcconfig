@@ -1,2 +1,2 @@
 MMM_APP_ICON = AppIconAdHoc
-MMM_APP_NAME = MMM(AdHoc)
+MMM_PRODUCT_BUNDLE_IDENTIFIER = com.yossibank.mmm.adhoc

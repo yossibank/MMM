@@ -1,2 +1,2 @@
 MMM_APP_ICON = AppIconDebug
-MMM_APP_NAME = MMM(Debug)
+MMM_PRODUCT_BUNDLE_IDENTIFIER = com.yossibank.mmm.development

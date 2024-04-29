@@ -1,2 +1,2 @@
 MMM_APP_ICON = AppIcon
-MMM_APP_NAME = MMM
+MMM_PRODUCT_BUNDLE_IDENTIFIER = com.yossibank.mmm
