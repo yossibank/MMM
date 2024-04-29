@@ -1,0 +1,153 @@
+fastlane_require "dotenv"
+
+default_platform(:ios)
+
+platform :ios do
+  desc "環境変数"
+  before_all do
+    Dotenv.overload ".env"
+
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "100"
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "10"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"] = ENV["APPLICATION_SPECIFIC_PASSWORD"]
+  end
+
+  desc "テスト実行"
+  lane :test do
+    scan(
+      workspace: 'MMM.xcworkspace',
+      configuration: "Debug",
+      scheme: "Debug",
+      device: "iPhone 15 (17.2)",
+      result_bundle: true,
+      output_directory: "build",
+      cloned_source_packages_path: "SourcePackages",
+      derived_data_path: "DerivedData",
+      clean: true
+    )
+  end
+
+  desc "開発者用証明書作成・更新"
+  lane :make_development_certificates do
+    match(
+      type: "development",
+      app_identifier: ["com.yossibank.mmm.development"],
+      force_for_new_devices: true,
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+    )
+  end
+
+  desc "検証用証明書作成・更新"
+  lane :make_adhoc_certificates do
+    match(
+      type: "adhoc",
+      app_identifier: ["com.yossibank.mmm.adhoc"],
+      force_for_new_devices: true,
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+    )
+  end
+
+  desc "本番用証明書作成・更新"
+  lane :make_appstore_certificates do
+    match(
+      type: "appstore",
+      app_identifier: ["com.yossibank.mmm"],
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+    )
+  end
+
+  desc "開発者用証明書取得"
+  lane :retrieve_development_certificates do
+    match(
+      type: "development",
+      app_identifier: ["com.yossibank.mmm.development"],
+      readonly: true
+    )
+  end
+
+  desc "検証用 Code Signing 設定"
+  lane :setting_adhoc_code_signing do
+    update_code_signing_settings(
+      path: "MMM/MMM.xcodeproj",
+      targets: "MMM",
+      build_configurations: "AdHoc",
+      code_sign_identity: "Apple Distribution: Kamiyama Yoshihito",
+      profile_name: "match AdHoc com.yossibank.mmm.adhoc",
+      bundle_identifier: "com.yossibank.mmm.adhoc"
+    )
+  end
+
+  desc "本番用 Code Signing 設定"
+  lane :setting_appstore_code_signing do
+    update_code_signing_settings(
+      path: "MMM/MMM.xcodeproj",
+      targets: "MMM",
+      build_configurations: "Release",
+      code_sign_identity: "Apple Distribution: Kamiyama Yoshihito",
+      profile_name: "match AppStore com.yossibank.mmm",
+      bundle_identifier: "com.yossibank.mmm"
+    )
+  end
+
+  desc "検証用 ipa 出力"
+  lane :output_adhoc_ipa do
+    setting_adhoc_code_signing
+
+    gym(
+      workspace: "MMM.xcworkspace",
+      scheme: "AdHoc",
+      configuration: "AdHoc",
+      output_directory: "./ipa",
+      output_name: "MMM_adhoc.ipa",
+      export_method: "ad-hoc",
+      clean: true
+    )
+  end
+
+
+  desc "本番用 ipa 出力"
+  lane :output_appstore_ipa do
+    setting_appstore_code_signing
+
+    gym(
+      workspace: "MMM.xcworkspace",
+      scheme: "Release",
+      configuration: "Release",
+      output_directory: "./ipa",
+      output_name: "MMM_appstore.ipa",
+      export_method: "app-store",
+      clean: true
+    )
+  end
+
+  desc "検証用アプリを Deploygate へアップロード"
+  lane :upload_adhoc_deploygate do
+    commit_hash = sh("git rev-parse --short HEAD").strip
+
+    temp_file = "/tmp/deploygate_message.txt"
+    File.write(temp_file, "")
+
+    sh("open -t #{temp_file}")
+
+    initial_modification_time = File.mtime(temp_file)
+
+    loop do
+      sleep(1)
+      current_modification_time = File.mtime(temp_file)
+      break if current_modification_time > initial_modification_time
+    end
+
+    message = File.read(temp_file).strip
+    message = "Deploygate" if message.empty?
+    message = "#{commit_hash}\n#{message}"
+
+    output_adhoc_ipa
+
+    deploygate(
+      api_token: ENV["DEPLOYGATE_API_TOKEN"],
+      user: ENV["DEPLOYGATE_USER"],
+      ipa: "./ipa/MMM_adhoc.ipa",
+      message: message
+    )
+  end
+end
