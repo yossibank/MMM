@@ -22,15 +22,7 @@ generate-folder:
 
 .PHONY: generate-mock
 generate-mock:
-	make generate-sample-test-mock
-
-.PHONY: generate-sample-test-mock
-generate-sample-test-mock:
-	mint run mockolo mockolo --sourcedirs Package/Sources/Sample \
-		--destination Package/Sources/Mock/Generated/SampleMockResults.swift \
-		--testable-imports Sample \
-		--mock-final \
-		--macro "DEBUG"
+	sh Script/mockolo.sh
 
 .PHONY: run-format
 run-format:
