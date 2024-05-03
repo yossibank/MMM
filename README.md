@@ -7,6 +7,6 @@
 
 ## お助けコマンド
 
-* 諸々設定してプロジェクト起動 `make open`
+* 諸々設定してプロジェクト起動 `make setup`
 * キャッシュ削除 `make clean`
 * SwiftFormat実行 `make run-format`
