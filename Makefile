@@ -33,13 +33,13 @@ run-gitHooks:
 	chmod +x GitHooks/pre-commit
 	git config --local core.hooksPath GitHooks
 
-.PHONY: upload-deploygate
-upload-deploygate:
-	bundle exec fastlane upload_adhoc_deploygate
-
 .PHONY: update-package
 update-package:
 	sh Script/update-package.sh
+
+.PHONY: upload-deploygate
+upload-deploygate:
+	bundle exec fastlane upload_adhoc_deploygate
 
 .PHONY: open
 open:
