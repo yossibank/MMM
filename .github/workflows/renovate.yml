@@ -48,7 +48,7 @@ jobs:
 
       - name: Resolve package dependencies
         run: |
-          xcodebuild -resolvePackageDependencies -workspace MMM.xcworkspace -scheme Debug
+          make update-package
 
       - name: Commit changes
         env:
