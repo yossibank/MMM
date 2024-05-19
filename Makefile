@@ -37,6 +37,10 @@ run-gitHooks:
 upload-deploygate:
 	bundle exec fastlane upload_adhoc_deploygate
 
+.PHONY: update-package
+update-package:
+	sh Script/update-package.sh
+
 .PHONY: open
 open:
 	open ./$(PRODUCT_NAME).xcworkspace
