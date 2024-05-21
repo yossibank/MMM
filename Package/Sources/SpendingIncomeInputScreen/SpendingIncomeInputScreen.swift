@@ -1,7 +1,9 @@
 import SwiftUI
 
-struct SpendingIncomeInputScreen: View {
-    var body: some View {
+public struct SpendingIncomeInputScreen: View {
+    public init() {}
+
+    public var body: some View {
         Text("Spending Income Input")
     }
 }

@@ -1,7 +1,9 @@
 import SwiftUI
 
-struct BillingStatementScreen: View {
-    var body: some View {
+public struct BillingStatementScreen: View {
+    public init() {}
+
+    public var body: some View {
         Text("Billing Statement")
     }
 }

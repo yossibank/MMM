@@ -1,7 +1,9 @@
 import SwiftUI
 
-struct OtherScreen: View {
-    var body: some View {
+public struct OtherScreen: View {
+    public init() {}
+
+    public var body: some View {
         Text("Other")
     }
 }

@@ -1,13 +1,13 @@
 import SwiftUI
 
-public struct ReportScreen: View {
+public struct HelpfulScreen: View {
     public init() {}
 
     public var body: some View {
-        Text("Report")
+        Text("Helpful")
     }
 }
 
 #Preview {
-    ReportScreen()
+    HelpfulScreen()
 }

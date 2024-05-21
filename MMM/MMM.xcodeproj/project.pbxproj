@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7873D9A32BDFB336001108B4 /* AppIcon in Frameworks */ = {isa = PBXBuildFile; productRef = 7873D9A22BDFB336001108B4 /* AppIcon */; };
 		787A89BE2BDC783E000F4335 /* MMMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A89BD2BDC783E000F4335 /* MMMApp.swift */; };
 		787A89C02BDC783E000F4335 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A89BF2BDC783E000F4335 /* ContentView.swift */; };
 		787A89C22BDC783E000F4335 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A89C12BDC783E000F4335 /* Item.swift */; };
 		787A89C42BDC783F000F4335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787A89C32BDC783F000F4335 /* Assets.xcassets */; };
 		787A89C72BDC783F000F4335 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787A89C62BDC783F000F4335 /* Preview Assets.xcassets */; };
-		7896A3F92BDCE73400C52133 /* Sample in Frameworks */ = {isa = PBXBuildFile; productRef = 7896A3F82BDCE73400C52133 /* Sample */; };
+		78AE9AE82BFCF5DE0090C4E2 /* AppIcon in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AE72BFCF5DE0090C4E2 /* AppIcon */; };
+		78AE9AEA2BFCF5DE0090C4E2 /* BillingStatementScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AE92BFCF5DE0090C4E2 /* BillingStatementScreen */; };
+		78AE9AEC2BFCF5DE0090C4E2 /* HelpfulScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AEB2BFCF5DE0090C4E2 /* HelpfulScreen */; };
+		78AE9AEE2BFCF5DE0090C4E2 /* OtherScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AED2BFCF5DE0090C4E2 /* OtherScreen */; };
+		78AE9AF02BFCF5DE0090C4E2 /* ReportScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AEF2BFCF5DE0090C4E2 /* ReportScreen */; };
+		78AE9AF22BFCF5DE0090C4E2 /* Sample in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF12BFCF5DE0090C4E2 /* Sample */; };
+		78AE9AF42BFCF5DE0090C4E2 /* SpendingIncomeInputScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF32BFCF5DE0090C4E2 /* SpendingIncomeInputScreen */; };
+		78AE9AF62BFCF5DE0090C4E2 /* TabScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF52BFCF5DE0090C4E2 /* TabScreen */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +40,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7896A3F92BDCE73400C52133 /* Sample in Frameworks */,
-				7873D9A32BDFB336001108B4 /* AppIcon in Frameworks */,
+				78AE9AF62BFCF5DE0090C4E2 /* TabScreen in Frameworks */,
+				78AE9AEA2BFCF5DE0090C4E2 /* BillingStatementScreen in Frameworks */,
+				78AE9AEE2BFCF5DE0090C4E2 /* OtherScreen in Frameworks */,
+				78AE9AF22BFCF5DE0090C4E2 /* Sample in Frameworks */,
+				78AE9AEC2BFCF5DE0090C4E2 /* HelpfulScreen in Frameworks */,
+				78AE9AF02BFCF5DE0090C4E2 /* ReportScreen in Frameworks */,
+				78AE9AF42BFCF5DE0090C4E2 /* SpendingIncomeInputScreen in Frameworks */,
+				78AE9AE82BFCF5DE0090C4E2 /* AppIcon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,8 +143,14 @@
 			);
 			name = MMM;
 			packageProductDependencies = (
-				7896A3F82BDCE73400C52133 /* Sample */,
-				7873D9A22BDFB336001108B4 /* AppIcon */,
+				78AE9AE72BFCF5DE0090C4E2 /* AppIcon */,
+				78AE9AE92BFCF5DE0090C4E2 /* BillingStatementScreen */,
+				78AE9AEB2BFCF5DE0090C4E2 /* HelpfulScreen */,
+				78AE9AED2BFCF5DE0090C4E2 /* OtherScreen */,
+				78AE9AEF2BFCF5DE0090C4E2 /* ReportScreen */,
+				78AE9AF12BFCF5DE0090C4E2 /* Sample */,
+				78AE9AF32BFCF5DE0090C4E2 /* SpendingIncomeInputScreen */,
+				78AE9AF52BFCF5DE0090C4E2 /* TabScreen */,
 			);
 			productName = MMM;
 			productReference = 787A89BA2BDC783E000F4335 /* MMM.app */;
@@ -515,13 +533,37 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7873D9A22BDFB336001108B4 /* AppIcon */ = {
+		78AE9AE72BFCF5DE0090C4E2 /* AppIcon */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppIcon;
 		};
-		7896A3F82BDCE73400C52133 /* Sample */ = {
+		78AE9AE92BFCF5DE0090C4E2 /* BillingStatementScreen */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BillingStatementScreen;
+		};
+		78AE9AEB2BFCF5DE0090C4E2 /* HelpfulScreen */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HelpfulScreen;
+		};
+		78AE9AED2BFCF5DE0090C4E2 /* OtherScreen */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OtherScreen;
+		};
+		78AE9AEF2BFCF5DE0090C4E2 /* ReportScreen */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ReportScreen;
+		};
+		78AE9AF12BFCF5DE0090C4E2 /* Sample */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Sample;
+		};
+		78AE9AF32BFCF5DE0090C4E2 /* SpendingIncomeInputScreen */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SpendingIncomeInputScreen;
+		};
+		78AE9AF52BFCF5DE0090C4E2 /* TabScreen */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TabScreen;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

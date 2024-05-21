@@ -1,6 +1,6 @@
-import AppIcon
 import SwiftData
 import SwiftUI
+import TabScreen
 
 @main
 struct MMMApp: App {
@@ -19,7 +19,7 @@ struct MMMApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppIconSnapshotView(iconName: "m.square.fill", iconColor: .black)
+            TabScreen()
         }
         .modelContainer(sharedModelContainer)
     }
