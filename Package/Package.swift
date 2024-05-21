@@ -74,6 +74,10 @@ let snapkit = Target.Dependency.product(
 
 // MARK: - Package
 
+let billingStatementScreen = Target.target(
+    name: "BillingStatementScreen"
+)
+
 let helpfulScreen = Target.target(
     name: "HelpfulScreen"
 )
@@ -89,6 +93,10 @@ let reportScreen = Target.target(
 let sample = Target.target(
     name: "Sample",
     dependencies: [snapkit]
+)
+
+let spendingIncomeInputScreen = Target.target(
+    name: "SpendingIncomeInputScreen"
 )
 
 let tabScreen = Target.target(
@@ -131,10 +139,12 @@ let package = Package.package(
     targets: [
         appIcon,
         appMock,
+        billingStatementScreen,
         helpfulScreen,
         otherScreen,
         reportScreen,
         sample,
+        spendingIncomeInputScreen,
         tabScreen
     ],
     testTargets: [
