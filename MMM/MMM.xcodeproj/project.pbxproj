@@ -14,6 +14,7 @@
 		787A89C42BDC783F000F4335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787A89C32BDC783F000F4335 /* Assets.xcassets */; };
 		787A89C72BDC783F000F4335 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787A89C62BDC783F000F4335 /* Preview Assets.xcassets */; };
 		7896A3F92BDCE73400C52133 /* Sample in Frameworks */ = {isa = PBXBuildFile; productRef = 7896A3F82BDCE73400C52133 /* Sample */; };
+		78AE9AE62BFCCC320090C4E2 /* TabFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AE52BFCCC320090C4E2 /* TabFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78AE9AE62BFCCC320090C4E2 /* TabFeature in Frameworks */,
 				7896A3F92BDCE73400C52133 /* Sample in Frameworks */,
 				7873D9A32BDFB336001108B4 /* AppIcon in Frameworks */,
 			);
@@ -133,6 +135,7 @@
 			packageProductDependencies = (
 				7896A3F82BDCE73400C52133 /* Sample */,
 				7873D9A22BDFB336001108B4 /* AppIcon */,
+				78AE9AE52BFCCC320090C4E2 /* TabFeature */,
 			);
 			productName = MMM;
 			productReference = 787A89BA2BDC783E000F4335 /* MMM.app */;
@@ -522,6 +525,10 @@
 		7896A3F82BDCE73400C52133 /* Sample */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Sample;
+		};
+		78AE9AE52BFCCC320090C4E2 /* TabFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TabFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

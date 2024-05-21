@@ -83,6 +83,10 @@ let sample = Target.target(
     dependencies: [snapkit]
 )
 
+let tabFeature = Target.target(
+    name: "TabFeature"
+)
+
 let mock = Target.target(
     name: "Mock",
     dependencies: [sample]
@@ -115,6 +119,7 @@ let package = Package.package(
     targets: [
         appIcon,
         sample,
+        tabFeature,
         mock
     ],
     testTargets: [
