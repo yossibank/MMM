@@ -18,7 +18,7 @@ install-mint-packages:
 
 .PHONY: generate-folder
 generate-folder:
-	mkdir -p Package/Sources/Mock/Generated
+	mkdir -p Package/Sources/AppMock/Generated
 
 .PHONY: generate-mock
 generate-mock:

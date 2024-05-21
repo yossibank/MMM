@@ -74,8 +74,16 @@ let snapkit = Target.Dependency.product(
 
 // MARK: - Package
 
-let appIcon = Target.target(
-    name: "AppIcon"
+let helpfulScreen = Target.target(
+    name: "HelpfulScreen"
+)
+
+let otherScreen = Target.target(
+    name: "OtherScreen"
+)
+
+let reportScreen = Target.target(
+    name: "ReportScreen"
 )
 
 let sample = Target.target(
@@ -83,12 +91,16 @@ let sample = Target.target(
     dependencies: [snapkit]
 )
 
-let tabFeature = Target.target(
-    name: "TabFeature"
+let tabScreen = Target.target(
+    name: "TabScreen"
 )
 
-let mock = Target.target(
-    name: "Mock",
+let appIcon = Target.target(
+    name: "AppIcon"
+)
+
+let appMock = Target.target(
+    name: "AppMock",
     dependencies: [sample]
 )
 
@@ -96,7 +108,7 @@ let mock = Target.target(
 
 let sampleTests = Target.testTarget(
     name: "SampleTests",
-    dependencies: [sample, mock]
+    dependencies: [appMock, sample]
 )
 
 // MARK: - Target
@@ -118,9 +130,12 @@ let package = Package.package(
     ],
     targets: [
         appIcon,
+        appMock,
+        helpfulScreen,
+        otherScreen,
+        reportScreen,
         sample,
-        tabFeature,
-        mock
+        tabScreen
     ],
     testTargets: [
         sampleTests
