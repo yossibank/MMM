@@ -4,6 +4,17 @@ import TabScreen
 
 @main
 struct MMMApp: App {
+    init() {
+        Appearance.configure()
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            TabScreen()
+        }
+        .modelContainer(sharedModelContainer)
+    }
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self
@@ -16,11 +27,4 @@ struct MMMApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
-    var body: some Scene {
-        WindowGroup {
-            TabScreen()
-        }
-        .modelContainer(sharedModelContainer)
-    }
 }

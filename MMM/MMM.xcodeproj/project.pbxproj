@@ -20,6 +20,7 @@
 		78AE9AF22BFCF5DE0090C4E2 /* Sample in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF12BFCF5DE0090C4E2 /* Sample */; };
 		78AE9AF42BFCF5DE0090C4E2 /* SpendingIncomeInputScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF32BFCF5DE0090C4E2 /* SpendingIncomeInputScreen */; };
 		78AE9AF62BFCF5DE0090C4E2 /* TabScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF52BFCF5DE0090C4E2 /* TabScreen */; };
+		78AE9AF92BFE24930090C4E2 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE9AF72BFE241E0090C4E2 /* Appearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		787A89C32BDC783F000F4335 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		787A89C62BDC783F000F4335 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7896A3FA2BDCE81500C52133 /* MMM.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MMM.xctestplan; sourceTree = "<group>"; };
+		78AE9AF72BFE241E0090C4E2 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				787A89BD2BDC783E000F4335 /* MMMApp.swift */,
 				787A89BF2BDC783E000F4335 /* ContentView.swift */,
 				787A89C12BDC783E000F4335 /* Item.swift */,
+				78AE9AF82BFE24300090C4E2 /* Appearance */,
 				783F3C592BDFC6D3008C6715 /* Configuration */,
 				783F3C5D2BDFC845008C6715 /* Resource */,
 				783F3C5E2BDFC885008C6715 /* Resource Preview */,
@@ -124,6 +127,14 @@
 				7896A3FA2BDCE81500C52133 /* MMM.xctestplan */,
 			);
 			path = TestPlan;
+			sourceTree = "<group>";
+		};
+		78AE9AF82BFE24300090C4E2 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				78AE9AF72BFE241E0090C4E2 /* Appearance.swift */,
+			);
+			path = Appearance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +220,7 @@
 				787A89C02BDC783E000F4335 /* ContentView.swift in Sources */,
 				787A89C22BDC783E000F4335 /* Item.swift in Sources */,
 				787A89BE2BDC783E000F4335 /* MMMApp.swift in Sources */,
+				78AE9AF92BFE24930090C4E2 /* Appearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

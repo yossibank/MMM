@@ -13,22 +13,30 @@ public struct TabItemView: View {
     }
 
     public var body: some View {
-        switch tabItem {
-        case .spendingIncomeInput:
-            SpendingIncomeInputScreen()
+        Group {
+            switch tabItem {
+            case .spendingIncomeInput:
+                SpendingIncomeInputScreen()
 
-        case .billingStatement:
-            BillingStatementScreen()
+            case .billingStatement:
+                BillingStatementScreen()
 
-        case .report:
-            ReportScreen()
+            case .report:
+                ReportScreen()
 
-        case .helpful:
-            HelpfulScreen()
+            case .helpful:
+                HelpfulScreen()
 
-        case .other:
-            OtherScreen()
+            case .other:
+                OtherScreen()
+            }
         }
+        .tabItem {
+            Image(tabItem.imageResource)
+            Text(tabItem.title)
+        }
+        .tag(tabItem)
+        .tint(.accentColor)
     }
 }
 

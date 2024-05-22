@@ -9,10 +9,6 @@ public struct TabScreen: View {
         TabView(selection: $selection) {
             ForEach(TabItem.allCases, id: \.self) { tabItem in
                 TabItemView(tabItem: tabItem)
-                    .tabItem {
-                        Image(systemName: tabItem.iconName)
-                    }
-                    .tag(tabItem)
             }
         }
     }

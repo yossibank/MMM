@@ -101,7 +101,8 @@ let spendingIncomeInputScreen = Target.target(
 
 let tabScreen = Target.target(
     name: "TabScreen",
-    dependencies: [billingStatementScreen, helpfulScreen, otherScreen, reportScreen, spendingIncomeInputScreen]
+    dependencies: [billingStatementScreen, helpfulScreen, otherScreen, reportScreen, spendingIncomeInputScreen],
+    resources: [.process("Resource")]
 )
 
 let appIcon = Target.target(
