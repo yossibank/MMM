@@ -184,11 +184,12 @@
 			};
 			buildConfigurationList = 787A89B52BDC783E000F4335 /* Build configuration list for PBXProject "MMM" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ja,
+				en,
 			);
 			mainGroup = 787A89B12BDC783E000F4335;
 			productRefGroup = 787A89BB2BDC783E000F4335 /* Products */;

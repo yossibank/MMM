@@ -13,11 +13,16 @@ public enum TabItem: String, CaseIterable {
 
     public var title: String {
         switch self {
-        case .spendingIncomeInput: "収支入力"
-        case .billingStatement: "明細一覧"
-        case .report: "レポート"
-        case .helpful: "お役立ち"
-        case .other: "その他"
+        case .spendingIncomeInput:
+            String(localized: "spendingIncomeInput", bundle: .module)
+        case .billingStatement:
+            String(localized: "billingStatement", bundle: .module)
+        case .report:
+            String(localized: "report", bundle: .module)
+        case .helpful:
+            String(localized: "helpful", bundle: .module)
+        case .other:
+            String(localized: "other", bundle: .module)
         }
     }
 

@@ -50,6 +50,7 @@ extension Target {
 extension Package {
     static func package(
         name: String,
+        defaultLocalization: LanguageTag = "ja",
         platforms: [SupportedPlatform],
         dependencies: [Dependency] = [],
         targets: [Target],
@@ -57,6 +58,7 @@ extension Package {
     ) -> Package {
         .init(
             name: name,
+            defaultLocalization: defaultLocalization,
             platforms: platforms,
             products: targets.map { $0.library() },
             dependencies: dependencies,
@@ -102,7 +104,7 @@ let spendingIncomeInputScreen = Target.target(
 let tabScreen = Target.target(
     name: "TabScreen",
     dependencies: [billingStatementScreen, helpfulScreen, otherScreen, reportScreen, spendingIncomeInputScreen],
-    resources: [.process("Resource")]
+    resources: [.process("Resources")]
 )
 
 let appIcon = Target.target(

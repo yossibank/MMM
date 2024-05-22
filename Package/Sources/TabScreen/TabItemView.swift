@@ -17,16 +17,12 @@ public struct TabItemView: View {
             switch tabItem {
             case .spendingIncomeInput:
                 SpendingIncomeInputScreen()
-
             case .billingStatement:
                 BillingStatementScreen()
-
             case .report:
                 ReportScreen()
-
             case .helpful:
                 HelpfulScreen()
-
             case .other:
                 OtherScreen()
             }
