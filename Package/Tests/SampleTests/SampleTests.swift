@@ -1,4 +1,4 @@
-@testable import Mock
+@testable import AppMock
 @testable import Sample
 import XCTest
 
