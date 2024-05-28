@@ -50,6 +50,7 @@ extension Target {
 extension Package {
     static func package(
         name: String,
+        defaultLocalization: LanguageTag = "ja",
         platforms: [SupportedPlatform],
         dependencies: [Dependency] = [],
         targets: [Target],
@@ -57,6 +58,7 @@ extension Package {
     ) -> Package {
         .init(
             name: name,
+            defaultLocalization: defaultLocalization,
             platforms: platforms,
             products: targets.map { $0.library() },
             dependencies: dependencies,
@@ -74,8 +76,20 @@ let snapkit = Target.Dependency.product(
 
 // MARK: - Package
 
-let appIcon = Target.target(
-    name: "AppIcon"
+let billingStatementScreen = Target.target(
+    name: "BillingStatementScreen"
+)
+
+let helpfulScreen = Target.target(
+    name: "HelpfulScreen"
+)
+
+let otherScreen = Target.target(
+    name: "OtherScreen"
+)
+
+let reportScreen = Target.target(
+    name: "ReportScreen"
 )
 
 let sample = Target.target(
@@ -83,8 +97,22 @@ let sample = Target.target(
     dependencies: [snapkit]
 )
 
-let mock = Target.target(
-    name: "Mock",
+let spendingIncomeInputScreen = Target.target(
+    name: "SpendingIncomeInputScreen"
+)
+
+let tabScreen = Target.target(
+    name: "TabScreen",
+    dependencies: [billingStatementScreen, helpfulScreen, otherScreen, reportScreen, spendingIncomeInputScreen],
+    resources: [.process("Resources")]
+)
+
+let appIcon = Target.target(
+    name: "AppIcon"
+)
+
+let appMock = Target.target(
+    name: "AppMock",
     dependencies: [sample]
 )
 
@@ -92,7 +120,7 @@ let mock = Target.target(
 
 let sampleTests = Target.testTarget(
     name: "SampleTests",
-    dependencies: [sample, mock]
+    dependencies: [appMock, sample]
 )
 
 // MARK: - Target
@@ -114,8 +142,14 @@ let package = Package.package(
     ],
     targets: [
         appIcon,
+        appMock,
+        billingStatementScreen,
+        helpfulScreen,
+        otherScreen,
+        reportScreen,
         sample,
-        mock
+        spendingIncomeInputScreen,
+        tabScreen
     ],
     testTargets: [
         sampleTests
