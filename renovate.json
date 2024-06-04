@@ -30,6 +30,9 @@
           "groupName": "swiftformat"
       }
   ],
+  "ignorePaths": [
+    ".ruby-version"
+  ],
   "dependencyDashboard": true,
   "enabled": true,
   "branchPrefix": "renovate/",
