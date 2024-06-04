@@ -102,7 +102,7 @@ jobs:
           | bundle exec xcpretty --report html
 
       # Danger実行
-      - uses: MeilCli/danger-action@v6.0.5
+      - uses: MeilCli/danger-action@v6.0.6
         with:
           plugins_file: "Gemfile"
           install_path: "vendor/bundle"
