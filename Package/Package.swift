@@ -133,7 +133,7 @@ let package = Package.package(
     dependencies: [
         .package(
             url: "https://github.com/nicklockwood/SwiftFormat",
-            from: "0.54.0"
+            from: "0.54.1"
         ),
         .package(
             url: "https://github.com/SnapKit/SnapKit.git",
