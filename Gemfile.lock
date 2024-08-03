@@ -38,7 +38,7 @@ GEM
       highline (~> 2.0.0)
     cork (0.3.0)
       colored2 (~> 3.1)
-    danger (9.4.3)
+    danger (9.5.0)
       claide (~> 1.0)
       claide-plugins (>= 0.9.2)
       colored2 (~> 3.1)
@@ -48,7 +48,6 @@ GEM
       git (~> 1.13)
       kramdown (~> 2.3)
       kramdown-parser-gfm (~> 1.0)
-      no_proxy_fix
       octokit (>= 4.0)
       terminal-table (>= 1, < 4)
     danger-swiftlint (0.36.1)
@@ -197,7 +196,6 @@ GEM
     nap (1.1.0)
     naturally (2.2.1)
     nkf (0.2.0)
-    no_proxy_fix (0.1.2)
     octokit (8.1.0)
       base64
       faraday (>= 1, < 3)
