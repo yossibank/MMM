@@ -41,7 +41,8 @@ let mmmTab = Target.target(
         inputView,
         listView,
         otherView,
-        reportView
+        reportView,
+        mmmAppearance
     ]
 )
 

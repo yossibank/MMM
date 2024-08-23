@@ -50,5 +50,4 @@ open:
 
 .PHONY: clean
 clean:
-	find . -type d \( -name \*.xcodeproj \) | xargs rm -rf
 	rm -rf $${HOME}/Library/Developer/Xcode/DerivedData

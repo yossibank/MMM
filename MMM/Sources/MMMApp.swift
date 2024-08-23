@@ -7,10 +7,6 @@ import SwiftUI
 struct MMMApp: App {
     @State private var isShowDebugView = false
 
-    init() {
-        Appearance.configure()
-    }
-
     var body: some Scene {
         WindowGroup {
             MMMTabView()

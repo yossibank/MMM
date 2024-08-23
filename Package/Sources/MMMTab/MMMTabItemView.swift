@@ -23,10 +23,6 @@ public struct MMMTabItemView: View {
                 OtherView()
             }
         }
-        .tabItem {
-            Image(tabItem.imageResource)
-            Text(tabItem.title)
-        }
         .tag(tabItem)
         .tint(.accentColor)
     }
