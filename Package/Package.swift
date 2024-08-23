@@ -3,6 +3,64 @@
 
 import PackageDescription
 
+// MARK: - Library
+
+// MARK: - Package
+
+let appIcon = Target.target(
+    name: "AppIcon"
+)
+
+let billingStatementScreen = Target.target(
+    name: "BillingStatementScreen"
+)
+
+let helpfulScreen = Target.target(
+    name: "HelpfulScreen"
+)
+
+let otherScreen = Target.target(
+    name: "OtherScreen"
+)
+
+let reportScreen = Target.target(
+    name: "ReportScreen"
+)
+
+let spendingIncomeInputScreen = Target.target(
+    name: "SpendingIncomeInputScreen"
+)
+
+let tabScreen = Target.target(
+    name: "TabScreen",
+    dependencies: [billingStatementScreen, helpfulScreen, otherScreen, reportScreen, spendingIncomeInputScreen]
+)
+
+// MARK: - Target
+
+let package = Package.package(
+    name: "Package",
+    platforms: [
+        .iOS(.v17)
+    ],
+    dependencies: [
+        .package(
+            url: "https://github.com/nicklockwood/SwiftFormat",
+            from: "0.54.3"
+        )
+    ],
+    targets: [
+        appIcon,
+        billingStatementScreen,
+        helpfulScreen,
+        otherScreen,
+        reportScreen,
+        spendingIncomeInputScreen,
+        tabScreen
+    ],
+    testTargets: []
+)
+
 // MARK: - Extension
 
 extension Target {
@@ -24,12 +82,14 @@ extension Target {
         name: String,
         dependencies: [Target] = [],
         dependenciesLibraries: [Target.Dependency] = [],
-        resources: [Resource] = []
+        resources: [Resource] = [],
+        swiftSettings: [SwiftSetting] = SwiftSetting.allCases
     ) -> Target {
         .target(
             name: name,
             dependencies: dependencies.map(\.dependency) + dependenciesLibraries,
-            resources: resources
+            resources: resources,
+            swiftSettings: swiftSettings
         )
     }
 
@@ -37,12 +97,14 @@ extension Target {
         name: String,
         dependencies: [Target],
         dependenciesLibraries: [Target.Dependency] = [],
-        resources: [Resource] = []
+        resources: [Resource] = [],
+        swiftSettings: [SwiftSetting] = SwiftSetting.allCases
     ) -> Target {
         .testTarget(
             name: name,
             dependencies: dependencies.map(\.dependency) + dependenciesLibraries,
-            resources: resources
+            resources: resources,
+            swiftSettings: swiftSettings
         )
     }
 }
@@ -67,91 +129,59 @@ extension Package {
     }
 }
 
-// MARK: - Library
+// MARK: - Swift Upcoming Feature Flags
 
-let snapkit = Target.Dependency.product(
-    name: "SnapKit",
-    package: "SnapKit"
-)
+extension SwiftSetting {
+    /// Forward-scan matching for trailing closures
+    /// - Version: Swift 5.3
+    /// - https://github.com/apple/swift-evolution/blob/main/proposals/0286-forward-scan-trailing-closures.md
+    static let forwardTrailingClosures: Self = .enableUpcomingFeature("ForwardTrailingClosures")
+    /// Introduce existential `any`
+    /// - Version: Swift 5.6
+    /// - https://github.com/apple/swift-evolution/blob/main/proposals/0335-existential-any.md
+    static let existentialAny: Self = .enableUpcomingFeature("ExistentialAny")
+    /// Regex Literals
+    /// - Version: Swift 5.7
+    /// - https://github.com/apple/swift-evolution/blob/main/proposals/0354-regex-literals.md
+    static let bareSlashRegexLiterals: Self = .enableUpcomingFeature("BareSlashRegexLiterals")
+    /// Concise magic file names
+    /// - Version: Swift 5.8
+    /// - https://github.com/apple/swift-evolution/blob/main/proposals/0274-magic-file.md
+    static let conciseMagicFile: Self = .enableUpcomingFeature("ConciseMagicFile")
+    /// Importing Forward Declared Objective-C Interfaces and Protocols
+    /// - Version: Swift 5.9
+    /// - https://github.com/apple/swift-evolution/blob/main/proposals/0384-importing-forward-declared-objc-interfaces-and-protocols.md
+    static let importObjcForwardDeclarations: Self = .enableUpcomingFeature("ImportObjcForwardDeclarations")
+    /// Remove Actor Isolation Inference caused by Property Wrappers
+    /// - Version: Swift 5.9
+    /// https://github.com/apple/swift-evolution/blob/main/proposals/0401-remove-property-wrapper-isolation.md
+    static let disableOutwardActorInference: Self = .enableUpcomingFeature("DisableOutwardActorInference")
+    /// Deprecate `@UIApplicationMain` and `@NSApplicationMain`
+    /// - Version: Swift 5.10
+    /// - https://github.com/apple/swift-evolution/blob/main/proposals/0383-deprecate-uiapplicationmain-and-nsapplicationmain.md
+    static let deprecateApplicationMain: Self = .enableUpcomingFeature("DeprecateApplicationMain")
+    /// Isolated default value expressions
+    /// - Version: Swift 5.10
+    /// - https://github.com/apple/swift-evolution/blob/main/proposals/0411-isolated-default-values.md
+    static let isolatedDefaultValues: Self = .enableUpcomingFeature("IsolatedDefaultValues")
+    /// Strict concurrency for global variables
+    /// - Version: Swift 5.10
+    /// - https://github.com/apple/swift-evolution/blob/main/proposals/0412-strict-concurrency-for-global-variables.md
+    static let globalConcurrency: Self = .enableUpcomingFeature("GlobalConcurrency")
+}
 
-// MARK: - Package
-
-let billingStatementScreen = Target.target(
-    name: "BillingStatementScreen"
-)
-
-let helpfulScreen = Target.target(
-    name: "HelpfulScreen"
-)
-
-let otherScreen = Target.target(
-    name: "OtherScreen"
-)
-
-let reportScreen = Target.target(
-    name: "ReportScreen"
-)
-
-let sample = Target.target(
-    name: "Sample",
-    dependencies: [snapkit]
-)
-
-let spendingIncomeInputScreen = Target.target(
-    name: "SpendingIncomeInputScreen"
-)
-
-let tabScreen = Target.target(
-    name: "TabScreen",
-    dependencies: [billingStatementScreen, helpfulScreen, otherScreen, reportScreen, spendingIncomeInputScreen],
-    resources: [.process("Resources")]
-)
-
-let appIcon = Target.target(
-    name: "AppIcon"
-)
-
-let appMock = Target.target(
-    name: "AppMock",
-    dependencies: [sample]
-)
-
-// MARK: - Test Package
-
-let sampleTests = Target.testTarget(
-    name: "SampleTests",
-    dependencies: [appMock, sample]
-)
-
-// MARK: - Target
-
-let package = Package.package(
-    name: "Package",
-    platforms: [
-        .iOS(.v17)
-    ],
-    dependencies: [
-        .package(
-            url: "https://github.com/nicklockwood/SwiftFormat",
-            from: "0.54.3"
-        ),
-        .package(
-            url: "https://github.com/SnapKit/SnapKit.git",
-            from: "5.7.1"
-        )
-    ],
-    targets: [
-        appIcon,
-        appMock,
-        billingStatementScreen,
-        helpfulScreen,
-        otherScreen,
-        reportScreen,
-        sample,
-        spendingIncomeInputScreen,
-        tabScreen
-    ],
-    testTargets: [
-        sampleTests
-    ]
-)
+extension SwiftSetting: CaseIterable {
+    public static var allCases: [Self] {
+        [
+            .forwardTrailingClosures,
+            .existentialAny,
+            .bareSlashRegexLiterals,
+            .conciseMagicFile,
+            .importObjcForwardDeclarations,
+            .disableOutwardActorInference,
+            .deprecateApplicationMain,
+            .isolatedDefaultValues,
+            .globalConcurrency
+        ]
+    }
+}

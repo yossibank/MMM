@@ -17,7 +17,6 @@
 		78AE9AEC2BFCF5DE0090C4E2 /* HelpfulScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AEB2BFCF5DE0090C4E2 /* HelpfulScreen */; };
 		78AE9AEE2BFCF5DE0090C4E2 /* OtherScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AED2BFCF5DE0090C4E2 /* OtherScreen */; };
 		78AE9AF02BFCF5DE0090C4E2 /* ReportScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AEF2BFCF5DE0090C4E2 /* ReportScreen */; };
-		78AE9AF22BFCF5DE0090C4E2 /* Sample in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF12BFCF5DE0090C4E2 /* Sample */; };
 		78AE9AF42BFCF5DE0090C4E2 /* SpendingIncomeInputScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF32BFCF5DE0090C4E2 /* SpendingIncomeInputScreen */; };
 		78AE9AF62BFCF5DE0090C4E2 /* TabScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF52BFCF5DE0090C4E2 /* TabScreen */; };
 		78AE9AF92BFE24930090C4E2 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE9AF72BFE241E0090C4E2 /* Appearance.swift */; };
@@ -45,7 +44,6 @@
 				78AE9AF62BFCF5DE0090C4E2 /* TabScreen in Frameworks */,
 				78AE9AEA2BFCF5DE0090C4E2 /* BillingStatementScreen in Frameworks */,
 				78AE9AEE2BFCF5DE0090C4E2 /* OtherScreen in Frameworks */,
-				78AE9AF22BFCF5DE0090C4E2 /* Sample in Frameworks */,
 				78AE9AEC2BFCF5DE0090C4E2 /* HelpfulScreen in Frameworks */,
 				78AE9AF02BFCF5DE0090C4E2 /* ReportScreen in Frameworks */,
 				78AE9AF42BFCF5DE0090C4E2 /* SpendingIncomeInputScreen in Frameworks */,
@@ -159,7 +157,6 @@
 				78AE9AEB2BFCF5DE0090C4E2 /* HelpfulScreen */,
 				78AE9AED2BFCF5DE0090C4E2 /* OtherScreen */,
 				78AE9AEF2BFCF5DE0090C4E2 /* ReportScreen */,
-				78AE9AF12BFCF5DE0090C4E2 /* Sample */,
 				78AE9AF32BFCF5DE0090C4E2 /* SpendingIncomeInputScreen */,
 				78AE9AF52BFCF5DE0090C4E2 /* TabScreen */,
 			);
@@ -565,10 +562,6 @@
 		78AE9AEF2BFCF5DE0090C4E2 /* ReportScreen */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ReportScreen;
-		};
-		78AE9AF12BFCF5DE0090C4E2 /* Sample */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Sample;
 		};
 		78AE9AF32BFCF5DE0090C4E2 /* SpendingIncomeInputScreen */ = {
 			isa = XCSwiftPackageProductDependency;

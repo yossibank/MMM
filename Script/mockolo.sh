@@ -1,6 +1,4 @@
-targets=(
-    "Sample"
-)
+targets=()
 
 for target in ${targets[@]}; do
     mint run mockolo mockolo --sourcedirs Package/Sources/$target \

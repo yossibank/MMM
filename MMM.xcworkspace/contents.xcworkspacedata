@@ -2,10 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Demo/SampleDemo.swiftpm">
-   </FileRef>
-   <FileRef
-      location = "group:Demo/ChartDemo.swiftpm">
+      location = "group:Demo/Playground.swiftpm">
    </FileRef>
    <FileRef
       location = "group:MMM/MMM.xcodeproj">
