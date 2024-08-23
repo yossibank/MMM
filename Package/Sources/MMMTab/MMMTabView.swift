@@ -1,8 +1,10 @@
+import InputView
 import MMMAppearance
 import SwiftUI
 
 public struct MMMTabView: View {
     @State private var selection: MMMTabItem = .report
+    @State private var isTappedPlusButton = false
 
     public init() {
         Appearance.configure()
@@ -36,7 +38,9 @@ public struct MMMTabView: View {
                 .clipShape(.rect(cornerRadius: 8))
                 .padding(.vertical)
 
-                Button {} label: {
+                Button {
+                    isTappedPlusButton.toggle()
+                } label: {
                     Image(.plus)
                         .resizable()
                         .renderingMode(.template)
@@ -46,6 +50,14 @@ public struct MMMTabView: View {
                 .buttonStyle(TapExpansionButton())
             }
         }
+        .sheet(
+            isPresented: $isTappedPlusButton,
+            content: {
+                InputView()
+                    .presentationDetents([.fraction(0.7), .medium, .large])
+                    .presentationDragIndicator(.visible)
+            }
+        )
     }
 
     private struct TabItemView: View {
