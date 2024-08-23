@@ -7,6 +7,19 @@ setup:
 	$(MAKE) generate-mock
 	$(MAKE) open
 
+.PHONY: pre-commit
+pre-commit:
+	$(MAKE) setup-pre-commit
+	$(MAKE) install-pre-commit
+
+.PHONY: setup-pre-commit
+setup-pre-commit:
+	brew install pre-commit
+
+.PHONY: install-pre-commit
+install-pre-commit:
+	pre-commit install
+
 .PHONY: install-bundler
 install-bundler:
 	bundle install
@@ -22,11 +35,6 @@ generate-mock:
 .PHONY: run-format
 run-format:
 	swift run --package-path BuildTools swiftformat .
-
-.PHONY: run-gitHooks
-run-gitHooks:
-	chmod +x GitHooks/pre-commit
-	git config --local core.hooksPath GitHooks
 
 .PHONY: update-package
 update-package:
