@@ -1,30 +1,40 @@
-import SwiftData
+import AppDebug
+import MMMAppearance
+import MMMTab
 import SwiftUI
-import TabScreen
 
 @main
 struct MMMApp: App {
+    @State private var isShowDebugView = false
+
     init() {
         Appearance.configure()
     }
 
     var body: some Scene {
         WindowGroup {
-            TabScreen()
+            MMMTabView()
+                .onShake {
+                    isShowDebugView.toggle()
+                }
+                .sheet(
+                    isPresented: $isShowDebugView,
+                    content: {
+                        DebugView()
+                    }
+                )
         }
-        .modelContainer(sharedModelContainer)
+        .debugContainer()
     }
+}
 
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
+private extension Scene {
+    @MainActor
+    func debugContainer() -> some Scene {
+        #if DEBUG
+            modelContainer(DebugSwiftData.container)
+        #else
+            self
+        #endif
+    }
 }

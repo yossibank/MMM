@@ -24,13 +24,7 @@
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
-    {
-      "target" : {
-        "containerPath" : "container:..\/Package",
-        "identifier" : "SampleTests",
-        "name" : "SampleTests"
-      }
-    }
+
   ],
   "version" : 1
 }

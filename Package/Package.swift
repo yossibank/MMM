@@ -7,33 +7,42 @@ import PackageDescription
 
 // MARK: - Package
 
+let appDebug = Target.target(
+    name: "AppDebug"
+)
+
 let appIcon = Target.target(
     name: "AppIcon"
 )
 
-let billingStatementScreen = Target.target(
-    name: "BillingStatementScreen"
+let inputView = Target.target(
+    name: "InputView"
 )
 
-let helpfulScreen = Target.target(
-    name: "HelpfulScreen"
+let listView = Target.target(
+    name: "ListView"
 )
 
-let otherScreen = Target.target(
-    name: "OtherScreen"
+let otherView = Target.target(
+    name: "OtherView"
 )
 
-let reportScreen = Target.target(
-    name: "ReportScreen"
+let reportView = Target.target(
+    name: "ReportView"
 )
 
-let spendingIncomeInputScreen = Target.target(
-    name: "SpendingIncomeInputScreen"
+let mmmAppearance = Target.target(
+    name: "MMMAppearance"
 )
 
-let tabScreen = Target.target(
-    name: "TabScreen",
-    dependencies: [billingStatementScreen, helpfulScreen, otherScreen, reportScreen, spendingIncomeInputScreen]
+let mmmTab = Target.target(
+    name: "MMMTab",
+    dependencies: [
+        inputView,
+        listView,
+        otherView,
+        reportView
+    ]
 )
 
 // MARK: - Target
@@ -50,13 +59,14 @@ let package = Package.package(
         )
     ],
     targets: [
+        appDebug,
         appIcon,
-        billingStatementScreen,
-        helpfulScreen,
-        otherScreen,
-        reportScreen,
-        spendingIncomeInputScreen,
-        tabScreen
+        inputView,
+        listView,
+        otherView,
+        reportView,
+        mmmAppearance,
+        mmmTab
     ],
     testTargets: []
 )
