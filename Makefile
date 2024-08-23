@@ -4,7 +4,6 @@ PRODUCT_NAME := MMM
 setup:
 	$(MAKE) install-bundler
 	$(MAKE) install-mint-packages
-	$(MAKE) generate-folder
 	$(MAKE) generate-mock
 	$(MAKE) open
 
@@ -15,10 +14,6 @@ install-bundler:
 .PHONY: install-mint-packages
 install-mint-packages:
 	mint bootstrap --overwrite y
-
-.PHONY: generate-folder
-generate-folder:
-	mkdir -p Package/Sources/AppMock/Generated
 
 .PHONY: generate-mock
 generate-mock:

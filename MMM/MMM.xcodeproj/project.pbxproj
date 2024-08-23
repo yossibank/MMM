@@ -20,6 +20,7 @@
 		78AE9AF42BFCF5DE0090C4E2 /* SpendingIncomeInputScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF32BFCF5DE0090C4E2 /* SpendingIncomeInputScreen */; };
 		78AE9AF62BFCF5DE0090C4E2 /* TabScreen in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE9AF52BFCF5DE0090C4E2 /* TabScreen */; };
 		78AE9AF92BFE24930090C4E2 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE9AF72BFE241E0090C4E2 /* Appearance.swift */; };
+		78EEBE1E2C78A74800567449 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78EEBE1D2C78A74800567449 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		787A89C62BDC783F000F4335 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7896A3FA2BDCE81500C52133 /* MMM.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MMM.xctestplan; sourceTree = "<group>"; };
 		78AE9AF72BFE241E0090C4E2 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		78EEBE1D2C78A74800567449 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				783F3C5D2BDFC845008C6715 /* Resource */,
 				783F3C5E2BDFC885008C6715 /* Resource Preview */,
 				7896A3FB2BDCE81900C52133 /* TestPlan */,
+				78EEBE1D2C78A74800567449 /* Settings.bundle */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -145,6 +148,8 @@
 				787A89B62BDC783E000F4335 /* Sources */,
 				787A89B72BDC783E000F4335 /* Frameworks */,
 				787A89B82BDC783E000F4335 /* Resources */,
+				786548812C78A5DC00664BAB /* Build Release */,
+				786548822C78A5F500664BAB /* LicensePlist */,
 			);
 			buildRules = (
 			);
@@ -172,7 +177,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					787A89B92BDC783E000F4335 = {
 						CreatedOnToolsVersion = 15.3;
@@ -204,11 +209,53 @@
 			buildActionMask = 2147483647;
 			files = (
 				787A89C72BDC783F000F4335 /* Preview Assets.xcassets in Resources */,
+				78EEBE1E2C78A74800567449 /* Settings.bundle in Resources */,
 				787A89C42BDC783F000F4335 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		786548812C78A5DC00664BAB /* Build Release */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Release";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../BuildTools\n\nxcrun --sdk macosx swift build -c release\n";
+		};
+		786548822C78A5F500664BAB /* LicensePlist */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = LicensePlist;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../BuildTools\n\nxcrun --sdk macosx swift build -c release \\\n    --package-path .build/checkouts/LicensePlist \\\n    --product license-plist\n\n.build/checkouts/LicensePlist/.build/release/license-plist \\\n    --config-path ../license_plist.yml \\\n    --package-path Package.resolved \\\n    --package-path ../MMM.xcworkspace/xcshareddata/swiftpm/Package.resolved \\\n    --output-path $SRCROOT/Sources/Settings.bundle\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		787A89B62BDC783E000F4335 /* Sources */ = {
@@ -230,6 +277,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -262,7 +310,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -325,6 +373,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -357,7 +406,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -388,6 +437,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -420,7 +470,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

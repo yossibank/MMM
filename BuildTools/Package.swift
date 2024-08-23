@@ -9,6 +9,10 @@ let package = Package(
         .package(
             url: "https://github.com/nicklockwood/SwiftFormat",
             from: "0.54.3"
+        ),
+        .package(
+            url: "https://github.com/mono0926/LicensePlist",
+            from: "3.25.1"
         )
     ],
     targets: [

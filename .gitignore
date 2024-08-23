@@ -90,16 +90,27 @@ fastlane/test_output
 iOSInjectionProject/
 
 # Other
+
 .DS_Store
 
 # Mockolo
-*MockResults.swift
+
+*Mock.swift
 
 # ENV
+
 .env
 
-# Local
+# Test
+
 SourcePackages
 
 # ipa
+
 ipa
+
+# LicensePlist
+
+com.mono0926.LicensePlist/
+com.mono0926.LicensePlist.latest_result.txt
+com.mono0926.LicensePlist.plist
