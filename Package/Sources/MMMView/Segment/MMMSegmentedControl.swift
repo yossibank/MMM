@@ -41,25 +41,26 @@ public struct MMMSegmentedControl<
     public var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: 8)
                     .fill(configuration.backgroundColor)
-                    .frame(height: 44)
+                    .frame(height: 40)
 
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(configuration.selectedBackgroundColor)
-                    .frame(width: segmentWidth(width: proxy.size.width), height: 36)
-                    .offset(x: selectedSegmentOffset + dragOffset)
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(selectedSegment.tintColor ?? configuration.selectedBackgroundColor)
+                    .frame(width: segmentWidth(width: proxy.size.width - 20), height: 32)
+                    .offset(x: selectedSegmentOffset + dragOffset + 4)
                     .animation(.spring(), value: selectedSegmentOffset)
 
                 HStack(spacing: 0) {
                     ForEach(SegmentType.allCases) { segment in
                         Text(segment.title)
+                            .bold()
                             .foregroundColor(
                                 isSelected(segment: segment)
                                     ? configuration.selectedForegroundColor
                                     : configuration.foregroundColor
                             )
-                            .frame(width: segmentWidth(width: proxy.size.width), height: 40)
+                            .frame(width: segmentWidth(width: proxy.size.width), height: 32)
                             .gesture(
                                 DragGesture()
                                     .onChanged { value in
@@ -87,6 +88,7 @@ public struct MMMSegmentedControl<
             }
         }
         .frame(height: 44)
+        .padding(.horizontal, 16)
     }
 
     private func dragSegment(

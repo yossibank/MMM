@@ -54,7 +54,7 @@ public struct MMMTabView: View {
             isPresented: $isTappedPlusButton,
             content: {
                 InputView()
-                    .presentationDetents([.fraction(0.7), .medium, .large])
+                    .presentationDetents([.fraction(0.75), .large])
                     .presentationDragIndicator(.visible)
             }
         )
