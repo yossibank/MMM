@@ -24,7 +24,6 @@ public struct MMMTabItemView: View {
             }
         }
         .tag(tabItem)
-        .tint(.accentColor)
     }
 }
 

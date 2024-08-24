@@ -36,7 +36,7 @@ public struct MMMTabView: View {
                 .frame(height: 48)
                 .background(.green.opacity(0.5))
                 .clipShape(.rect(cornerRadius: 8))
-                .padding(.vertical)
+                .padding(.vertical, 8)
 
                 Button {
                     isTappedPlusButton.toggle()
