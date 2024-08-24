@@ -1,6 +1,9 @@
+import MMMData
 import SwiftUI
 
 public struct OtherView: View {
+    @Environment(\.mainColor) private var mainColor
+
     @State private var router = Router()
 
     public init() {}
@@ -15,10 +18,20 @@ public struct OtherView: View {
                 } header: {
                     Text("設定")
                 }
+                .listRowBackground(Color.gray.opacity(0.1))
             }
             .listStyle(.insetGrouped)
-            .navigationTitle("その他")
+            .scrollContentBackground(.hidden)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("その他")
+                        .bold()
+                        .foregroundStyle(.white)
+                }
+            }
+            .toolbarBackground(mainColor.wrappedValue, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
     }
 }

@@ -1,12 +1,15 @@
+import MMMData
 import SwiftUI
 
 public struct TapExpansionButton: ButtonStyle {
+    @Environment(\.mainColor) private var mainColor
+
     public init() {}
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .background(.green)
+            .background(mainColor.wrappedValue)
             .foregroundStyle(.white)
             .clipShape(Circle())
             .scaleEffect(configuration.isPressed ? 1.1 : 1)

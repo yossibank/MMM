@@ -11,6 +11,7 @@ public struct DebugView: View {
             ChecklistView()
                 .tabItem(.checklist)
         }
+        .tint(.black)
     }
 }
 
