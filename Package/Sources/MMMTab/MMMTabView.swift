@@ -1,8 +1,11 @@
 import InputView
 import MMMAppearance
+import MMMData
 import SwiftUI
 
 public struct MMMTabView: View {
+    @Environment(\.mainColor) private var mainColor
+
     @State private var selection: MMMTabItem = .report
     @State private var isTappedPlusButton = false
 
@@ -34,7 +37,7 @@ public struct MMMTabView: View {
                     }
                 }
                 .frame(height: 48)
-                .background(.green.opacity(0.5))
+                .background(mainColor.wrappedValue.opacity(0.5))
                 .clipShape(.rect(cornerRadius: 8))
                 .padding(.vertical, 8)
 
@@ -61,6 +64,8 @@ public struct MMMTabView: View {
     }
 
     private struct TabItemView: View {
+        @Environment(\.mainColor) private var mainColor
+
         let tabItem: MMMTabItem
         let isActive: Bool
 
@@ -78,7 +83,7 @@ public struct MMMTabView: View {
                 }
             }
             .frame(width: isActive ? 120 : 60, height: 36)
-            .background(isActive ? .green : .clear)
+            .background(isActive ? mainColor.wrappedValue : .clear)
             .clipShape(.rect(cornerRadius: 8))
             .padding(.horizontal, 4)
         }

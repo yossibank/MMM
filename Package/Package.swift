@@ -19,6 +19,10 @@ let mmmAppearance = Target.target(
     name: "MMMAppearance"
 )
 
+let mmmData = Target.target(
+    name: "MMMData"
+)
+
 let mmmView = Target.target(
     name: "MMMView"
 )
@@ -35,7 +39,10 @@ let listView = Target.target(
 )
 
 let otherView = Target.target(
-    name: "OtherView"
+    name: "OtherView",
+    dependencies: [
+        mmmData
+    ]
 )
 
 let reportView = Target.target(
@@ -46,6 +53,7 @@ let mmmTab = Target.target(
     name: "MMMTab",
     dependencies: [
         mmmAppearance,
+        mmmData,
         inputView,
         listView,
         otherView,
@@ -74,6 +82,7 @@ let package = Package.package(
         otherView,
         reportView,
         mmmAppearance,
+        mmmData,
         mmmTab,
         mmmView
     ],
