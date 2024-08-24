@@ -16,5 +16,4 @@ public struct DebugView: View {
 
 #Preview {
     DebugView()
-        .modelContainer(DebugSwiftData.previewContainer)
 }
