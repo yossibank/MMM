@@ -74,7 +74,7 @@ public struct MMMTabView: View {
                     Text(tabItem.title)
                         .bold()
                         .font(.subheadline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.white)
                 }
             }
             .frame(width: isActive ? 120 : 60, height: 36)

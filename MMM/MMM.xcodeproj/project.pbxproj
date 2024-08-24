@@ -10,6 +10,7 @@
 		787A89BE2BDC783E000F4335 /* MMMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A89BD2BDC783E000F4335 /* MMMApp.swift */; };
 		787A89C42BDC783F000F4335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787A89C32BDC783F000F4335 /* Assets.xcassets */; };
 		787A89C72BDC783F000F4335 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787A89C62BDC783F000F4335 /* Preview Assets.xcassets */; };
+		788E7A8A2C7966FD0033A15E /* MMMView in Frameworks */ = {isa = PBXBuildFile; productRef = 788E7A892C7966FD0033A15E /* MMMView */; };
 		78CEC4132C78B92600B5EBD1 /* AppDebug in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC4122C78B92600B5EBD1 /* AppDebug */; };
 		78CEC4152C78B92600B5EBD1 /* AppIcon in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC4142C78B92600B5EBD1 /* AppIcon */; };
 		78CEC4172C78B92600B5EBD1 /* InputView in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC4162C78B92600B5EBD1 /* InputView */; };
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				788E7A8A2C7966FD0033A15E /* MMMView in Frameworks */,
 				78CEC4172C78B92600B5EBD1 /* InputView in Frameworks */,
 				78CEC4212C78B92600B5EBD1 /* ReportView in Frameworks */,
 				78CEC4132C78B92600B5EBD1 /* AppDebug in Frameworks */,
@@ -150,6 +152,7 @@
 				78CEC41C2C78B92600B5EBD1 /* MMMTab */,
 				78CEC41E2C78B92600B5EBD1 /* OtherView */,
 				78CEC4202C78B92600B5EBD1 /* ReportView */,
+				788E7A892C7966FD0033A15E /* MMMView */,
 			);
 			productName = MMM;
 			productReference = 787A89BA2BDC783E000F4335 /* MMM.app */;
@@ -576,6 +579,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		788E7A892C7966FD0033A15E /* MMMView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMMView;
+		};
 		78CEC4122C78B92600B5EBD1 /* AppDebug */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppDebug;
