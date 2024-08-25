@@ -15,12 +15,15 @@ let appIcon = Target.target(
     name: "AppIcon"
 )
 
-let mmmAppearance = Target.target(
-    name: "MMMAppearance"
-)
-
 let mmmData = Target.target(
     name: "MMMData"
+)
+
+let mmmAppearance = Target.target(
+    name: "MMMAppearance",
+    dependencies: [
+        mmmData
+    ]
 )
 
 let mmmView = Target.target(
@@ -41,7 +44,8 @@ let listView = Target.target(
 let otherView = Target.target(
     name: "OtherView",
     dependencies: [
-        mmmData
+        mmmData,
+        mmmView
     ]
 )
 

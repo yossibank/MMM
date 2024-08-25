@@ -86,6 +86,12 @@ public struct MMMSegmentedControl<
                     }
                 }
             }
+            .onAppear {
+                tapSegment(
+                    segment: selectedSegment,
+                    width: proxy.size.width
+                )
+            }
         }
         .frame(height: 44)
         .padding(.horizontal, 16)

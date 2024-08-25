@@ -2,7 +2,7 @@ import MMMView
 import SwiftUI
 
 public struct InputView: View {
-    @State private var selectedSegment: InputSegmentType = .expenditure
+    @State private var selectedSegment = InputSegmentType.expenditure
 
     public init() {}
 

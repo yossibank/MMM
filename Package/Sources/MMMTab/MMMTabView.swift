@@ -31,8 +31,6 @@ public struct MMMTabView: View {
                     HStack {
                         ForEach(MMMTabItem.allCases, id: \.self) { tabItem in
                             Button {
-                                selection = tabItem
-
                                 if selection == tabItem {
                                     switch tabItem {
                                     case .report, .list:
@@ -42,6 +40,8 @@ public struct MMMTabView: View {
                                         tabRouter.other.popToRoot()
                                     }
                                 }
+
+                                selection = tabItem
                             } label: {
                                 TabItemView(
                                     tabItem: tabItem,

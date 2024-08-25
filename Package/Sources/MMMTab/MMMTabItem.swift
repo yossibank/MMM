@@ -11,14 +11,9 @@ public enum MMMTabItem: String, CaseIterable {
 
     public var title: String {
         switch self {
-        case .report:
-            String(localized: "report", bundle: .module)
-
-        case .list:
-            String(localized: "list", bundle: .module)
-
-        case .other:
-            String(localized: "other", bundle: .module)
+        case .report: "レポート"
+        case .list: "一覧"
+        case .other: "その他"
         }
     }
 

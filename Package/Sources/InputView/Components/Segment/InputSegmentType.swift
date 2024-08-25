@@ -9,8 +9,8 @@ enum InputSegmentType: MMMSegmentTypeProtocol {
 
     var title: String {
         switch self {
-        case .expenditure: String(localized: "expenditure", bundle: .module)
-        case .income: String(localized: "income", bundle: .module)
+        case .expenditure: "支出"
+        case .income: "収入"
         }
     }
 

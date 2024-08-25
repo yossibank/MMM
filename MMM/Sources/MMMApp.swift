@@ -8,6 +8,7 @@ import SwiftUI
 @main
 struct MMMApp: App {
     @State private var mainColor = Color.green
+    @State private var colorMode = ColorMode.light
     @State private var isShowDebugView = false
 
     private let dataModel = MMMDataModel<ColorThemeModel>()
@@ -18,6 +19,7 @@ struct MMMApp: App {
                 .onAppear {
                     if let model = dataModel.first {
                         mainColor = model.colorTheme.color
+                        colorMode = model.colorMode
                     }
                 }
                 .onShake {
@@ -30,6 +32,7 @@ struct MMMApp: App {
                     }
                 )
                 .environment(\.mainColor, $mainColor)
+                .environment(\.colorMode, $colorMode)
         }
         .modelContainer(MMMDataModelConfiguration.container)
     }

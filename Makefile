@@ -51,3 +51,7 @@ open:
 .PHONY: clean
 clean:
 	rm -rf $${HOME}/Library/Developer/Xcode/DerivedData
+
+.PHONY: clean-preview
+clean-preview:
+	xcrun simctl --set previews delete all
