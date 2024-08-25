@@ -1,25 +1,25 @@
 import SwiftUI
 
-struct RouterView<Content: View>: View {
+public struct OtherRouterView<Content: View>: View {
     @Environment(\.mainColor) private var mainColor
 
-    @State private var router: Router
+    @State private var otherRouter: OtherRouter
 
     private let content: Content
 
-    init(
-        router: Router,
+    public init(
+        otherRouter: OtherRouter,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.router = router
+        self.otherRouter = otherRouter
         self.content = content()
     }
 
-    var body: some View {
-        NavigationStack(path: $router.path) {
+    public var body: some View {
+        NavigationStack(path: $otherRouter.path) {
             content
-                .navigationDestination(for: Route.self) { route in
-                    router.view(for: route)
+                .navigationDestination(for: OtherRoute.self) { route in
+                    otherRouter.view(for: route)
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             ToolbarItem(placement: .principal) {
@@ -33,12 +33,12 @@ struct RouterView<Content: View>: View {
                 }
         }
         .tint(.white)
-        .environment(\.router, router)
+        .environment(\.otherRouter, otherRouter)
     }
 }
 
 #Preview {
-    RouterView(router: Router()) {
+    OtherRouterView(otherRouter: OtherRouter()) {
         Text("RouterView")
             .navigationTitle("Title")
             .navigationBarTitleDisplayMode(.inline)

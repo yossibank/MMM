@@ -4,10 +4,15 @@ import ReportView
 import SwiftUI
 
 public struct MMMTabItemView: View {
-    public let tabItem: MMMTabItem
+    let tabItem: MMMTabItem
+    let tabRouter: MMMTabRouter
 
-    public init(tabItem: MMMTabItem) {
+    public init(
+        tabItem: MMMTabItem,
+        tabRouter: MMMTabRouter
+    ) {
         self.tabItem = tabItem
+        self.tabRouter = tabRouter
     }
 
     public var body: some View {
@@ -20,7 +25,7 @@ public struct MMMTabItemView: View {
                 ListView()
 
             case .other:
-                OtherView()
+                OtherView(otherRouter: tabRouter.other)
             }
         }
         .tag(tabItem)
@@ -28,5 +33,8 @@ public struct MMMTabItemView: View {
 }
 
 #Preview {
-    MMMTabItemView(tabItem: .report)
+    MMMTabItemView(
+        tabItem: .report,
+        tabRouter: .init(other: .init())
+    )
 }

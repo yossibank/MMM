@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ThemeColorView: View {
     @Environment(\.mainColor) private var mainColor
+    @Environment(\.otherRouter) private var otherRouter
 
     private let dataModel = MMMDataModel<ColorThemeModel>()
 
@@ -25,6 +26,11 @@ struct ThemeColorView: View {
                 mainColor.wrappedValue = .blue
             }
             .foregroundStyle(.blue)
+
+            Button("戻る") {
+                otherRouter.popToRoot()
+            }
+            .foregroundStyle(.yellow)
         }
     }
 }

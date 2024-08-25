@@ -1,9 +1,9 @@
 import Foundation
 
-enum Route: Hashable, Sendable {
+public enum OtherRoute: Hashable, Sendable {
     case themeColor
 
-    var title: String {
+    public var title: String {
         switch self {
         case .themeColor: "テーマカラー"
         }

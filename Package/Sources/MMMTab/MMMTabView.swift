@@ -1,12 +1,14 @@
 import InputView
 import MMMAppearance
 import MMMData
+import OtherView
 import SwiftUI
 
 public struct MMMTabView: View {
     @Environment(\.mainColor) private var mainColor
 
-    @State private var selection: MMMTabItem = .report
+    @State private var selection = MMMTabItem.report
+    @State private var tabRouter = MMMTabRouter(other: .init())
     @State private var isTappedPlusButton = false
 
     public init() {
@@ -17,7 +19,10 @@ public struct MMMTabView: View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selection) {
                 ForEach(MMMTabItem.allCases, id: \.self) { tabItem in
-                    MMMTabItemView(tabItem: tabItem)
+                    MMMTabItemView(
+                        tabItem: tabItem,
+                        tabRouter: tabRouter
+                    )
                 }
             }
 
@@ -27,6 +32,16 @@ public struct MMMTabView: View {
                         ForEach(MMMTabItem.allCases, id: \.self) { tabItem in
                             Button {
                                 selection = tabItem
+
+                                if selection == tabItem {
+                                    switch tabItem {
+                                    case .report, .list:
+                                        break
+
+                                    case .other:
+                                        tabRouter.other.popToRoot()
+                                    }
+                                }
                             } label: {
                                 TabItemView(
                                     tabItem: tabItem,

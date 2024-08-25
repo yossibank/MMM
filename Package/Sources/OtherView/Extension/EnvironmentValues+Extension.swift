@@ -1,12 +1,12 @@
 import SwiftUI
 
-extension EnvironmentValues {
-    var router: Router {
-        get { self[RouterKey.self] }
-        set { self[RouterKey.self] = newValue }
+public extension EnvironmentValues {
+    var otherRouter: OtherRouter {
+        get { self[OtherRouterKey.self] }
+        set { self[OtherRouterKey.self] = newValue }
     }
 }
 
-private struct RouterKey: EnvironmentKey {
-    static let defaultValue = Router()
+private struct OtherRouterKey: EnvironmentKey {
+    static let defaultValue = OtherRouter()
 }

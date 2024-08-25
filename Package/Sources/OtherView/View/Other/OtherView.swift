@@ -4,15 +4,17 @@ import SwiftUI
 public struct OtherView: View {
     @Environment(\.mainColor) private var mainColor
 
-    @State private var router = Router()
+    var otherRouter: OtherRouter
 
-    public init() {}
+    public init(otherRouter: OtherRouter) {
+        self.otherRouter = otherRouter
+    }
 
     public var body: some View {
-        RouterView(router: router) {
+        OtherRouterView(otherRouter: otherRouter) {
             List {
                 Section {
-                    NavigationLink(value: Route.themeColor) {
+                    NavigationLink(value: OtherRoute.themeColor) {
                         Text("テーマカラー")
                     }
                 } header: {
@@ -37,5 +39,5 @@ public struct OtherView: View {
 }
 
 #Preview {
-    OtherView()
+    OtherView(otherRouter: OtherRouter())
 }
