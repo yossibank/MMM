@@ -1,8 +1,9 @@
 import MMMData
+import MMMViewUtility
 import SwiftUI
 
 public struct OtherView: View {
-    @Environment(\.mainColor) private var mainColor
+    @Environment(\.colorTheme) private var colorTheme
 
     var otherRouter: OtherRouter
 
@@ -32,8 +33,7 @@ public struct OtherView: View {
                         .foregroundStyle(.white)
                 }
             }
-            .toolbarBackground(mainColor.wrappedValue, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+            .toolBarBackground()
         }
     }
 }

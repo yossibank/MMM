@@ -1,11 +1,11 @@
 import InputView
-import MMMAppearance
 import MMMData
+import MMMViewUtility
 import OtherView
 import SwiftUI
 
 public struct MMMTabView: View {
-    @Environment(\.mainColor) private var mainColor
+    @Environment(\.colorTheme) private var colorTheme
 
     @State private var selection = MMMTabItem.report
     @State private var tabRouter = MMMTabRouter(other: .init())
@@ -52,7 +52,7 @@ public struct MMMTabView: View {
                     }
                 }
                 .frame(height: 48)
-                .background(mainColor.wrappedValue.opacity(0.5))
+                .mmmBackground(alpha: 0.5)
                 .clipShape(.rect(cornerRadius: 8))
                 .padding(.vertical, 8)
 
@@ -79,7 +79,7 @@ public struct MMMTabView: View {
     }
 
     private struct TabItemView: View {
-        @Environment(\.mainColor) private var mainColor
+        @Environment(\.colorTheme) private var colorTheme
 
         let tabItem: MMMTabItem
         let isActive: Bool
@@ -98,7 +98,7 @@ public struct MMMTabView: View {
                 }
             }
             .frame(width: isActive ? 120 : 60, height: 36)
-            .background(isActive ? mainColor.wrappedValue : .clear)
+            .mmmActiveBackground(isActive: isActive)
             .clipShape(.rect(cornerRadius: 8))
             .padding(.horizontal, 4)
         }

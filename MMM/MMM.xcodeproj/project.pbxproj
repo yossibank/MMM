@@ -16,11 +16,11 @@
 		78CEC4152C78B92600B5EBD1 /* AppIcon in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC4142C78B92600B5EBD1 /* AppIcon */; };
 		78CEC4172C78B92600B5EBD1 /* InputView in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC4162C78B92600B5EBD1 /* InputView */; };
 		78CEC4192C78B92600B5EBD1 /* ListView in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC4182C78B92600B5EBD1 /* ListView */; };
-		78CEC41B2C78B92600B5EBD1 /* MMMAppearance in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC41A2C78B92600B5EBD1 /* MMMAppearance */; };
 		78CEC41D2C78B92600B5EBD1 /* MMMTab in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC41C2C78B92600B5EBD1 /* MMMTab */; };
 		78CEC41F2C78B92600B5EBD1 /* OtherView in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC41E2C78B92600B5EBD1 /* OtherView */; };
 		78CEC4212C78B92600B5EBD1 /* ReportView in Frameworks */ = {isa = PBXBuildFile; productRef = 78CEC4202C78B92600B5EBD1 /* ReportView */; };
 		78EEBE1E2C78A74800567449 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78EEBE1D2C78A74800567449 /* Settings.bundle */; };
+		78F201912C7B448900DF31E4 /* MMMViewUtility in Frameworks */ = {isa = PBXBuildFile; productRef = 78F201902C7B448900DF31E4 /* MMMViewUtility */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,10 +42,10 @@
 			files = (
 				784A753F2C7A2A08002E5FDD /* MMMData in Frameworks */,
 				788E7A8A2C7966FD0033A15E /* MMMView in Frameworks */,
+				78F201912C7B448900DF31E4 /* MMMViewUtility in Frameworks */,
 				78CEC4172C78B92600B5EBD1 /* InputView in Frameworks */,
 				78CEC4212C78B92600B5EBD1 /* ReportView in Frameworks */,
 				78CEC4132C78B92600B5EBD1 /* AppDebug in Frameworks */,
-				78CEC41B2C78B92600B5EBD1 /* MMMAppearance in Frameworks */,
 				78CEC4152C78B92600B5EBD1 /* AppIcon in Frameworks */,
 				78CEC41F2C78B92600B5EBD1 /* OtherView in Frameworks */,
 				78CEC41D2C78B92600B5EBD1 /* MMMTab in Frameworks */,
@@ -150,12 +150,12 @@
 				78CEC4142C78B92600B5EBD1 /* AppIcon */,
 				78CEC4162C78B92600B5EBD1 /* InputView */,
 				78CEC4182C78B92600B5EBD1 /* ListView */,
-				78CEC41A2C78B92600B5EBD1 /* MMMAppearance */,
 				78CEC41C2C78B92600B5EBD1 /* MMMTab */,
 				78CEC41E2C78B92600B5EBD1 /* OtherView */,
 				78CEC4202C78B92600B5EBD1 /* ReportView */,
 				788E7A892C7966FD0033A15E /* MMMView */,
 				784A753E2C7A2A08002E5FDD /* MMMData */,
+				78F201902C7B448900DF31E4 /* MMMViewUtility */,
 			);
 			productName = MMM;
 			productReference = 787A89BA2BDC783E000F4335 /* MMM.app */;
@@ -606,10 +606,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ListView;
 		};
-		78CEC41A2C78B92600B5EBD1 /* MMMAppearance */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MMMAppearance;
-		};
 		78CEC41C2C78B92600B5EBD1 /* MMMTab */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MMMTab;
@@ -621,6 +617,10 @@
 		78CEC4202C78B92600B5EBD1 /* ReportView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ReportView;
+		};
+		78F201902C7B448900DF31E4 /* MMMViewUtility */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMMViewUtility;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

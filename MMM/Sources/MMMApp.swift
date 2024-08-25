@@ -1,5 +1,4 @@
 import AppDebug
-import MMMAppearance
 import MMMData
 import MMMTab
 import SwiftData
@@ -7,8 +6,9 @@ import SwiftUI
 
 @main
 struct MMMApp: App {
-    @State private var mainColor = Color.green
+    @State private var colorTheme = ColorTheme.green
     @State private var colorMode = ColorMode.light
+    @State private var isGradation = false
     @State private var isShowDebugView = false
 
     private let dataModel = MMMDataModel<ColorThemeModel>()
@@ -18,8 +18,9 @@ struct MMMApp: App {
             MMMTabView()
                 .onAppear {
                     if let model = dataModel.first {
-                        mainColor = model.colorTheme.color
+                        colorTheme = model.colorTheme
                         colorMode = model.colorMode
+                        isGradation = model.isGradation
                     }
                 }
                 .onShake {
@@ -31,7 +32,8 @@ struct MMMApp: App {
                         DebugView()
                     }
                 )
-                .environment(\.mainColor, $mainColor)
+                .environment(\.isGradation, $isGradation)
+                .environment(\.colorTheme, $colorTheme)
                 .environment(\.colorMode, $colorMode)
         }
         .modelContainer(MMMDataModelConfiguration.container)

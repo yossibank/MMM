@@ -8,21 +8,25 @@ public final class ColorThemeModel: @unchecked Sendable {
     public var id: String
     public var colorTheme: ColorTheme
     public var colorMode: ColorMode
+    public var isGradation: Bool
 
     public init(
         id: String,
         colorTheme: ColorTheme,
-        colorMode: ColorMode
+        colorMode: ColorMode,
+        isGradation: Bool
     ) {
         self.id = id
         self.colorTheme = colorTheme
         self.colorMode = colorMode
+        self.isGradation = isGradation
     }
 
     public static let defaultModel = ColorThemeModel(
         id: "ThemeColorKey",
         colorTheme: .green,
-        colorMode: .light
+        colorMode: .light,
+        isGradation: false
     )
 }
 
@@ -40,6 +44,7 @@ public enum ColorTheme: Codable, CaseIterable, Sendable {
     case brown
     case gray
     case black
+    case random
 
     public var color: Color {
         switch self {
@@ -56,6 +61,7 @@ public enum ColorTheme: Codable, CaseIterable, Sendable {
         case .brown: .brown
         case .gray: .gray
         case .black: .black
+        case .random: .random
         }
     }
 
@@ -74,6 +80,7 @@ public enum ColorTheme: Codable, CaseIterable, Sendable {
         case .brown: "ブラウン"
         case .gray: "グレー"
         case .black: "ブラック"
+        case .random: "ランダム(起動毎に変更)"
         }
     }
 }

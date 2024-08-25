@@ -1,7 +1,8 @@
+import MMMViewUtility
 import SwiftUI
 
 public struct OtherRouterView<Content: View>: View {
-    @Environment(\.mainColor) private var mainColor
+    @Environment(\.colorTheme) private var colorTheme
 
     @State private var otherRouter: OtherRouter
 
@@ -28,8 +29,7 @@ public struct OtherRouterView<Content: View>: View {
                                     .foregroundStyle(.white)
                             }
                         }
-                        .toolbarBackground(mainColor.wrappedValue, for: .navigationBar)
-                        .toolbarBackground(.visible, for: .navigationBar)
+                        .toolBarBackground()
                 }
         }
         .tint(.white)

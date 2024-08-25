@@ -1,10 +1,12 @@
 import MMMData
 import MMMView
 import SwiftUI
+import UIKit
 
 struct ThemeColorView: View {
-    @Environment(\.mainColor) private var mainColor
+    @Environment(\.colorTheme) private var colorTheme
     @Environment(\.colorMode) private var colorMode
+    @Environment(\.isGradation) private var isGradation
 
     @State private var colorScheme: ColorSchemeSegmentType = .light
     @State private var colorAlpha: CGFloat = 1.0
@@ -14,27 +16,47 @@ struct ThemeColorView: View {
     var body: some View {
         List {
             Section {
-                ForEach(ColorTheme.allCases, id: \.self) { colorTheme in
+                ForEach(ColorTheme.allCases, id: \.self) { theme in
                     HStack(spacing: 16) {
                         Circle()
-                            .frame(width: 16, height: 16)
-                            .foregroundStyle(colorTheme.color)
+                            .frame(width: 20, height: 20)
+                            .foregroundStyle(theme.color)
 
-                        Text(colorTheme.title)
+                        Text(theme.title)
 
                         Spacer()
 
-                        if colorTheme.color == mainColor.wrappedValue {
-                            Text("チェック")
+                        if theme == colorTheme.wrappedValue {
+                            Image(.checkmark)
+                                .resizable()
+                                .frame(width: 20, height: 20)
                         }
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        updateColorTheme(colorTheme)
+                        updateColorTheme(theme)
                     }
                 }
             } header: {
                 Text("メインカラー")
+            }
+            .listRowBackground(Color.gray.opacity(0.1))
+
+            Section {
+                HStack {
+                    Text("グラデーションあり")
+
+                    Spacer()
+
+                    Toggle("", isOn: isGradation)
+                        .labelsHidden()
+                        .tint(.green)
+                        .onChange(of: isGradation.wrappedValue) { _, newValue in
+                            updateIsGradation(newValue)
+                        }
+                }
+            } header: {
+                Text("グラデーションカラー")
             }
             .listRowBackground(Color.gray.opacity(0.1))
 
@@ -72,7 +94,7 @@ struct ThemeColorView: View {
         let model = dataModel.first ?? .defaultModel
         model.colorTheme = theme
         dataModel.upsert(model: model)
-        mainColor.wrappedValue = theme.color
+        colorTheme.wrappedValue = theme
     }
 
     @MainActor
@@ -81,6 +103,14 @@ struct ThemeColorView: View {
         model.colorMode = mode
         dataModel.upsert(model: model)
         colorMode.wrappedValue = mode
+    }
+
+    @MainActor
+    private func updateIsGradation(_ isOn: Bool) {
+        let model = dataModel.first ?? .defaultModel
+        model.isGradation = isOn
+        dataModel.upsert(model: model)
+        isGradation.wrappedValue = isOn
     }
 }
 

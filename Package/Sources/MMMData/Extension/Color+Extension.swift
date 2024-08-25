@@ -1,14 +1,9 @@
 import SwiftUI
 
-public extension Color {
-    var colorTheme: ColorTheme {
-        switch self {
-        case .red: .red
-        case .yellow: .yellow
-        case .blue: .blue
-        case .green: .green
-        case .orange: .orange
-        default: .green
-        }
-    }
+extension Color {
+    static let random: Color = .init(
+        red: .random(in: 0...1),
+        green: .random(in: 0...1),
+        blue: .random(in: 0...1)
+    )
 }
