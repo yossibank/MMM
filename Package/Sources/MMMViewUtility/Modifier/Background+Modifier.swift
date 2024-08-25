@@ -1,5 +1,15 @@
 import SwiftUI
 
+public struct BackgroundViewModifier: ViewModifier {
+    @Environment(\.colorMode) private var colorMode
+
+    public init() {}
+
+    public func body(content: Content) -> some View {
+        content.background(colorMode.wrappedValue.bgColor)
+    }
+}
+
 public struct BackgroundModifier: ViewModifier {
     @Environment(\.colorTheme) private var colorTheme
     @Environment(\.isGradation) private var isGradation
@@ -48,25 +58,15 @@ public struct ActiveBackgroundModifier: ViewModifier {
 
 public struct ToolBarBackgroundModifier: ViewModifier {
     @Environment(\.colorTheme) private var colorTheme
-    @Environment(\.isGradation) private var isGradation
 
     public init() {}
 
     public func body(content: Content) -> some View {
-        if isGradation.wrappedValue {
-            content
-                .toolbarBackground(
-                    colorTheme.wrappedValue.color.gradient,
-                    for: .navigationBar
-                )
-                .toolbarBackground(.visible, for: .navigationBar)
-        } else {
-            content
-                .toolbarBackground(
-                    colorTheme.wrappedValue.color,
-                    for: .navigationBar
-                )
-                .toolbarBackground(.visible, for: .navigationBar)
-        }
+        content
+            .toolbarBackground(
+                colorTheme.wrappedValue.color.gradient,
+                for: .navigationBar
+            )
+            .toolbarBackground(.visible, for: .navigationBar)
     }
 }

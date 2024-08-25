@@ -33,12 +33,16 @@ let mmmViewUtility = Target.target(
 let inputView = Target.target(
     name: "InputView",
     dependencies: [
-        mmmView
+        mmmView,
+        mmmViewUtility
     ]
 )
 
 let listView = Target.target(
-    name: "ListView"
+    name: "ListView",
+    dependencies: [
+        mmmViewUtility
+    ]
 )
 
 let otherView = Target.target(
@@ -51,7 +55,10 @@ let otherView = Target.target(
 )
 
 let reportView = Target.target(
-    name: "ReportView"
+    name: "ReportView",
+    dependencies: [
+        mmmViewUtility
+    ]
 )
 
 let mmmTab = Target.target(

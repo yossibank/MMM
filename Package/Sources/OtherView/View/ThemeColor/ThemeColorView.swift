@@ -1,5 +1,6 @@
 import MMMData
 import MMMView
+import MMMViewUtility
 import SwiftUI
 import UIKit
 
@@ -80,8 +81,8 @@ struct ThemeColorView: View {
         }
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
-        .foregroundStyle(colorMode.wrappedValue.textColor)
-        .background(colorMode.wrappedValue.bgColor)
+        .mmmForeground()
+        .mmmBackgroundView()
         .onAppear {
             if let model = dataModel.first {
                 colorScheme = model.colorMode == .light ? .light : .dark

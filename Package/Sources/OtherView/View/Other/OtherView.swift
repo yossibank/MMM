@@ -25,6 +25,8 @@ public struct OtherView: View {
             }
             .listStyle(.insetGrouped)
             .scrollContentBackground(.hidden)
+            .mmmForeground()
+            .mmmBackgroundView()
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
