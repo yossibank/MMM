@@ -1,15 +1,28 @@
 import AppDebug
-import MMMAppearance
+import MMMData
 import MMMTab
+import SwiftData
 import SwiftUI
 
 @main
 struct MMMApp: App {
+    @State private var colorTheme = ColorTheme.green
+    @State private var colorMode = ColorMode.light
+    @State private var isGradation = false
     @State private var isShowDebugView = false
+
+    private let dataModel = MMMDataModel<ColorThemeModel>()
 
     var body: some Scene {
         WindowGroup {
             MMMTabView()
+                .onAppear {
+                    if let model = dataModel.first {
+                        colorTheme = model.colorTheme
+                        colorMode = model.colorMode
+                        isGradation = model.isGradation
+                    }
+                }
                 .onShake {
                     isShowDebugView.toggle()
                 }
@@ -19,18 +32,10 @@ struct MMMApp: App {
                         DebugView()
                     }
                 )
+                .environment(\.isGradation, $isGradation)
+                .environment(\.colorTheme, $colorTheme)
+                .environment(\.colorMode, $colorMode)
         }
-        .debugContainer()
-    }
-}
-
-private extension Scene {
-    @MainActor
-    func debugContainer() -> some Scene {
-        #if DEBUG
-            modelContainer(DebugSwiftData.container)
-        #else
-            self
-        #endif
+        .modelContainer(MMMDataModelConfiguration.container)
     }
 }

@@ -11,10 +11,10 @@ public struct DebugView: View {
             ChecklistView()
                 .tabItem(.checklist)
         }
+        .tint(.black)
     }
 }
 
 #Preview {
     DebugView()
-        .modelContainer(DebugSwiftData.previewContainer)
 }

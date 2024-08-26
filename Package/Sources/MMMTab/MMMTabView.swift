@@ -1,9 +1,14 @@
 import InputView
-import MMMAppearance
+import MMMData
+import MMMViewUtility
+import OtherView
 import SwiftUI
 
 public struct MMMTabView: View {
-    @State private var selection: MMMTabItem = .report
+    @Environment(\.colorTheme) private var colorTheme
+
+    @State private var selection = MMMTabItem.report
+    @State private var tabRouter = MMMTabRouter(other: .init())
     @State private var isTappedPlusButton = false
 
     public init() {
@@ -14,7 +19,10 @@ public struct MMMTabView: View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selection) {
                 ForEach(MMMTabItem.allCases, id: \.self) { tabItem in
-                    MMMTabItemView(tabItem: tabItem)
+                    MMMTabItemView(
+                        tabItem: tabItem,
+                        tabRouter: tabRouter
+                    )
                 }
             }
 
@@ -23,6 +31,16 @@ public struct MMMTabView: View {
                     HStack {
                         ForEach(MMMTabItem.allCases, id: \.self) { tabItem in
                             Button {
+                                if selection == tabItem {
+                                    switch tabItem {
+                                    case .report, .list:
+                                        break
+
+                                    case .other:
+                                        tabRouter.other.popToRoot()
+                                    }
+                                }
+
                                 selection = tabItem
                             } label: {
                                 TabItemView(
@@ -34,9 +52,9 @@ public struct MMMTabView: View {
                     }
                 }
                 .frame(height: 48)
-                .background(.green.opacity(0.5))
+                .mmmBackground(alpha: 0.5)
                 .clipShape(.rect(cornerRadius: 8))
-                .padding(.vertical)
+                .padding(.vertical, 8)
 
                 Button {
                     isTappedPlusButton.toggle()
@@ -56,11 +74,14 @@ public struct MMMTabView: View {
                 InputView()
                     .presentationDetents([.fraction(0.75), .large])
                     .presentationDragIndicator(.visible)
+                    .presentationCornerRadius(20)
             }
         )
     }
 
     private struct TabItemView: View {
+        @Environment(\.colorTheme) private var colorTheme
+
         let tabItem: MMMTabItem
         let isActive: Bool
 
@@ -78,7 +99,7 @@ public struct MMMTabView: View {
                 }
             }
             .frame(width: isActive ? 120 : 60, height: 36)
-            .background(isActive ? .green : .clear)
+            .mmmActiveBackground(isActive: isActive)
             .clipShape(.rect(cornerRadius: 8))
             .padding(.horizontal, 4)
         }

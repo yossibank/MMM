@@ -15,37 +15,57 @@ let appIcon = Target.target(
     name: "AppIcon"
 )
 
-let mmmAppearance = Target.target(
-    name: "MMMAppearance"
+let mmmData = Target.target(
+    name: "MMMData"
 )
 
 let mmmView = Target.target(
     name: "MMMView"
 )
 
+let mmmViewUtility = Target.target(
+    name: "MMMViewUtility",
+    dependencies: [
+        mmmData
+    ]
+)
+
 let inputView = Target.target(
     name: "InputView",
     dependencies: [
-        mmmView
+        mmmView,
+        mmmViewUtility
     ]
 )
 
 let listView = Target.target(
-    name: "ListView"
+    name: "ListView",
+    dependencies: [
+        mmmViewUtility
+    ]
 )
 
 let otherView = Target.target(
-    name: "OtherView"
+    name: "OtherView",
+    dependencies: [
+        mmmData,
+        mmmView,
+        mmmViewUtility
+    ]
 )
 
 let reportView = Target.target(
-    name: "ReportView"
+    name: "ReportView",
+    dependencies: [
+        mmmViewUtility
+    ]
 )
 
 let mmmTab = Target.target(
     name: "MMMTab",
     dependencies: [
-        mmmAppearance,
+        mmmData,
+        mmmViewUtility,
         inputView,
         listView,
         otherView,
@@ -73,9 +93,10 @@ let package = Package.package(
         listView,
         otherView,
         reportView,
-        mmmAppearance,
+        mmmData,
         mmmTab,
-        mmmView
+        mmmView,
+        mmmViewUtility
     ],
     testTargets: []
 )

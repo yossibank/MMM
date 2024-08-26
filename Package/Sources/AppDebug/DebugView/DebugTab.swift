@@ -24,3 +24,13 @@ extension DebugTabItem {
         tab: .checklist
     )
 }
+
+extension View {
+    @ViewBuilder
+    func tabItem(_ item: DebugTabItem) -> some View {
+        tabItem {
+            Label(item.title, systemImage: item.systemImageName)
+        }
+        .tag(item.tab)
+    }
+}
