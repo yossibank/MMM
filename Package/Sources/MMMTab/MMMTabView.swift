@@ -74,7 +74,7 @@ public struct MMMTabView: View {
                 InputView()
                     .presentationDetents([.fraction(0.75), .large])
                     .presentationDragIndicator(.visible)
-                    .presentationCornerRadius(20)
+                    .interactiveDismissDisabled()
             }
         )
     }

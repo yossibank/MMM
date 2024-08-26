@@ -11,38 +11,34 @@ public struct InputView: View {
     public init() {}
 
     public var body: some View {
-        VStack {
-            Divider()
-                .frame(height: 3)
-                .background(colorTheme.wrappedValue.color)
+        GeometryReader { proxy in
+            VStack(spacing: 8) {
+                Divider()
+                    .frame(height: 2)
+                    .background(colorTheme.wrappedValue.color)
 
-            MMMSegmentedControl(
-                selectedSegment: $selectedSegment,
-                configuration: .init(
-                    selectedForegroundColor: colorMode.wrappedValue == .light
-                        ? .black
-                        : .white,
-                    foregroundColor: colorMode.wrappedValue == .light
-                        ? .black
-                        : .white
+                MMMSegmentedControl(
+                    selectedSegment: $selectedSegment,
+                    configuration: .init(
+                        selectedForegroundColor: colorMode.wrappedValue == .light
+                            ? .black
+                            : .white,
+                        foregroundColor: colorMode.wrappedValue == .light
+                            ? .black
+                            : .white
+                    )
                 )
-            )
-            .frame(width: 280)
+                .frame(width: 320)
 
-            switch selectedSegment {
-            case .expenditure:
-                Text("支出")
+                Text(selectedSegment.title)
 
-            case .income:
-                Text("収入")
+                Spacer()
             }
-
-            Spacer()
+            .frame(width: proxy.size.width)
+            .padding(.top, 16)
+            .mmmForeground()
+            .mmmBackgroundView()
         }
-        .frame(maxWidth: .infinity)
-        .padding(.top, 16)
-        .mmmForeground()
-        .mmmBackgroundView()
     }
 }
 

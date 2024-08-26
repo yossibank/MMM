@@ -4,6 +4,7 @@ import SwiftUI
 enum InputSegmentType: MMMSegmentTypeProtocol {
     case expenditure
     case income
+    case transfer
 
     var id: Self { self }
 
@@ -11,6 +12,7 @@ enum InputSegmentType: MMMSegmentTypeProtocol {
         switch self {
         case .expenditure: "支出"
         case .income: "収入"
+        case .transfer: "振替"
         }
     }
 
@@ -18,6 +20,7 @@ enum InputSegmentType: MMMSegmentTypeProtocol {
         switch self {
         case .expenditure: .red.opacity(0.8)
         case .income: .blue.opacity(0.8)
+        case .transfer: .green.opacity(0.8)
         }
     }
 }
