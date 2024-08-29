@@ -10,6 +10,7 @@ public struct MMMTabView: View {
     @State private var selection = MMMTabItem.report
     @State private var tabRouter = MMMTabRouter(other: .init())
     @State private var isTappedPlusButton = false
+    @State private var isDismissDisabled = false
 
     public init() {
         Appearance.configure()
@@ -71,10 +72,10 @@ public struct MMMTabView: View {
         .sheet(
             isPresented: $isTappedPlusButton,
             content: {
-                InputView()
-                    .presentationDetents([.fraction(0.75), .large])
-                    .presentationDragIndicator(.visible)
-                    .interactiveDismissDisabled()
+                InputView(isDimissDisabled: $isDismissDisabled)
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.hidden)
+                    .interactiveDismissDisabled(isDismissDisabled)
             }
         )
     }

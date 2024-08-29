@@ -67,6 +67,9 @@ public struct ToolBarBackgroundModifier: ViewModifier {
                 colorTheme.wrappedValue.color.gradient,
                 for: .navigationBar
             )
-            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(
+                .visible,
+                for: .navigationBar
+            )
     }
 }

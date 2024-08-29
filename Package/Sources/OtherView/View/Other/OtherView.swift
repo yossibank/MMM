@@ -28,6 +28,7 @@ public struct OtherView: View {
             .mmmForeground()
             .mmmBackgroundView()
             .navigationBarTitleDisplayMode(.inline)
+            .toolBarBackground()
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("その他")
@@ -35,7 +36,6 @@ public struct OtherView: View {
                         .foregroundStyle(.white)
                 }
             }
-            .toolBarBackground()
         }
     }
 }

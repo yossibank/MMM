@@ -5,6 +5,11 @@ import PackageDescription
 
 // MARK: - Library
 
+let introspect = Target.Dependency.product(
+    name: "SwiftUIIntrospect",
+    package: "swiftui-introspect"
+)
+
 // MARK: - Package
 
 let appDebug = Target.target(
@@ -35,6 +40,9 @@ let inputView = Target.target(
     dependencies: [
         mmmView,
         mmmViewUtility
+    ],
+    dependenciesLibraries: [
+        introspect
     ]
 )
 
@@ -84,6 +92,10 @@ let package = Package.package(
         .package(
             url: "https://github.com/nicklockwood/SwiftFormat",
             from: "0.54.3"
+        ),
+        .package(
+            url: "https://github.com/siteline/swiftui-introspect",
+            from: "1.3.0"
         )
     ],
     targets: [
