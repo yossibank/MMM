@@ -6,4 +6,8 @@ enum CaluclatorOperation {
     case multiply
     case divide
     case none
+
+    var nowCaluclating: Bool {
+        self != .none
+    }
 }

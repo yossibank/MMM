@@ -1,8 +1,8 @@
 import MMMData
 import MMMView
-import MMMViewUtility
 import SwiftUI
 import UIKit
+import UtilityView
 
 struct ThemeColorView: View {
     @Environment(\.colorTheme) private var colorTheme

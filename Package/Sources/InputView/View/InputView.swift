@@ -1,7 +1,7 @@
 import MMMView
-import MMMViewUtility
 import SwiftUI
 import SwiftUIIntrospect
+import UtilityView
 
 public struct InputView: View {
     enum FocusField {
@@ -38,21 +38,30 @@ public struct InputView: View {
                         HStack {
                             Text("項目名")
                                 .font(.headline)
+                                .frame(width: 60, alignment: .center)
 
                             VStack(spacing: 0) {
                                 TextField("", text: $itemName)
                                     .padding(8)
                                     .focused($focusField, equals: .itemName)
+                                    .onTapGesture {
+                                        withAnimation {
+                                            isShowCalculator = false
+                                            focusField = .itemName
+                                        }
+                                    }
 
                                 Divider()
                                     .frame(height: 1)
                                     .background(colorMode.wrappedValue.textColor)
                             }
                         }
+                        .padding(.trailing, 24)
 
                         HStack {
                             Text(selectedSegment.title)
                                 .font(.headline)
+                                .frame(width: 60, alignment: .center)
 
                             VStack(spacing: 0) {
                                 TextField("", text: $amountValue)
@@ -60,7 +69,8 @@ public struct InputView: View {
                                     .focused($focusField, equals: .amount)
                                     .onTapGesture {
                                         withAnimation {
-                                            isShowCalculator.toggle()
+                                            isShowCalculator = true
+                                            focusField = .amount
                                         }
                                     }
                                     .introspect(.textField, on: .iOS(.v17, .v18)) { textField in
@@ -75,15 +85,13 @@ public struct InputView: View {
                             Text("円")
                                 .font(.headline)
                         }
-
-                        Spacer()
                     }
                     .padding([.top, .leading, .trailing], 16)
                 }
 
                 if isShowCalculator {
                     CaluclatorView(value: $amountValue)
-                        .frame(height: 300)
+                        .frame(height: 360)
                         .transition(
                             .asymmetric(
                                 insertion: .push(from: .bottom),

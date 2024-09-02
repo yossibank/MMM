@@ -1,6 +1,6 @@
 import MMMData
-import MMMViewUtility
 import SwiftUI
+import UtilityView
 
 public struct OtherView: View {
     @Environment(\.colorTheme) private var colorTheme

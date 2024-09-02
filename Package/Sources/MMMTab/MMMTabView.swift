@@ -1,8 +1,8 @@
 import InputView
 import MMMData
-import MMMViewUtility
 import OtherView
 import SwiftUI
+import UtilityView
 
 public struct MMMTabView: View {
     @Environment(\.colorTheme) private var colorTheme

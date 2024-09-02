@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum CaluclatorButton: String {
+enum CaluclatorItem: String {
     case one = "1"
     case two = "2"
     case three = "3"
@@ -18,16 +18,18 @@ enum CaluclatorButton: String {
     case mutliply = "x"
     case equal = "="
     case clear = "AC"
-    case decimal = "."
-    case percent = "%"
-    case negative = "+/-"
+    case delete = "DEL"
+
+    var isBigWidth: Bool {
+        self == .delete || self == .doubleZero
+    }
 
     var color: Color {
         switch self {
         case .add, .subtract, .mutliply, .divide, .equal:
             .orange
 
-        case .clear, .negative, .percent:
+        case .clear, .delete:
             Color(.lightGray)
 
         default:
@@ -41,4 +43,12 @@ enum CaluclatorButton: String {
             )
         }
     }
+
+    static let all: [[CaluclatorItem]] = [
+        [.clear, .delete, .divide],
+        [.seven, .eight, .nine, .mutliply],
+        [.four, .five, .six, .subtract],
+        [.one, .two, .three, .add],
+        [.zero, .doubleZero, .equal]
+    ]
 }

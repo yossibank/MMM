@@ -24,14 +24,21 @@ let mmmData = Target.target(
     name: "MMMData"
 )
 
-let mmmView = Target.target(
-    name: "MMMView"
+let utility = Target.target(
+    name: "Utility"
 )
 
-let mmmViewUtility = Target.target(
-    name: "MMMViewUtility",
+let utilityView = Target.target(
+    name: "UtilityView",
     dependencies: [
         mmmData
+    ]
+)
+
+let mmmView = Target.target(
+    name: "MMMView",
+    dependencies: [
+        utility
     ]
 )
 
@@ -39,7 +46,7 @@ let inputView = Target.target(
     name: "InputView",
     dependencies: [
         mmmView,
-        mmmViewUtility
+        utilityView
     ],
     dependenciesLibraries: [
         introspect
@@ -49,7 +56,7 @@ let inputView = Target.target(
 let listView = Target.target(
     name: "ListView",
     dependencies: [
-        mmmViewUtility
+        utilityView
     ]
 )
 
@@ -58,14 +65,14 @@ let otherView = Target.target(
     dependencies: [
         mmmData,
         mmmView,
-        mmmViewUtility
+        utilityView
     ]
 )
 
 let reportView = Target.target(
     name: "ReportView",
     dependencies: [
-        mmmViewUtility
+        utilityView
     ]
 )
 
@@ -73,12 +80,19 @@ let mmmTab = Target.target(
     name: "MMMTab",
     dependencies: [
         mmmData,
-        mmmViewUtility,
+        utilityView,
         inputView,
         listView,
         otherView,
         reportView
     ]
+)
+
+// MARK: - Test Package
+
+let utilityTests = Target.testTarget(
+    name: "UtilityTests",
+    dependencies: [utility]
 )
 
 // MARK: - Target
@@ -103,14 +117,17 @@ let package = Package.package(
         appIcon,
         inputView,
         listView,
-        otherView,
-        reportView,
         mmmData,
         mmmTab,
         mmmView,
-        mmmViewUtility
+        otherView,
+        reportView,
+        utility,
+        utilityView
     ],
-    testTargets: []
+    testTargets: [
+        utilityTests
+    ]
 )
 
 // MARK: - Extension
