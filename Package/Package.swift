@@ -38,6 +38,7 @@ let utilityView = Target.target(
 let mmmView = Target.target(
     name: "MMMView",
     dependencies: [
+        mmmData,
         utility
     ]
 )

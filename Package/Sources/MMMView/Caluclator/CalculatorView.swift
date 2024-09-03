@@ -1,8 +1,11 @@
+import MMMData
 import SwiftUI
 import Utility
 
 public struct CalculatorView: View {
     @Binding private var value: String
+
+    @Environment(\.colorTheme) private var colorTheme
 
     @State private var tempOperation: CalculatorOperation = .none
     @State private var nowOperation: CalculatorOperation = .none
@@ -34,6 +37,10 @@ public struct CalculatorView: View {
                 }
                 .padding(.top, 8)
                 .padding(.trailing, 16)
+
+                Divider()
+                    .frame(height: 2)
+                    .background(colorTheme.wrappedValue.color)
 
                 ForEach(CalculatorItem.all, id: \.self) { items in
                     HStack(spacing: 12) {

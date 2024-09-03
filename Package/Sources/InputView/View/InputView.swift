@@ -15,7 +15,7 @@ public struct InputView: View {
 
     @State private var selectedSegment = InputSegmentType.expenditure
     @State private var itemName = ""
-    @State private var amountValue = "0"
+    @State private var itemPrice = "0"
     @State private var isShowCalculator = false
 
     @FocusState private var focusField: FocusField?
@@ -36,6 +36,12 @@ public struct InputView: View {
 
                     ScrollView {
                         VStack(spacing: 16) {
+                            HStack {
+                                Text("日付")
+                                    .font(.headline)
+                                    .frame(width: 60, alignment: .center)
+                            }
+
                             HStack {
                                 Text("項目名")
                                     .font(.headline)
@@ -65,7 +71,7 @@ public struct InputView: View {
                                     .frame(width: 60, alignment: .center)
 
                                 VStack(spacing: 0) {
-                                    TextField("", text: $amountValue)
+                                    TextField("", text: $itemPrice)
                                         .padding(8)
                                         .focused($focusField, equals: .amount)
                                         .onTapGesture {
@@ -91,7 +97,7 @@ public struct InputView: View {
                     }
 
                     if isShowCalculator {
-                        CalculatorView(value: $amountValue) {
+                        CalculatorView(value: $itemPrice) {
                             withAnimation {
                                 isShowCalculator = false
                                 focusField = nil
@@ -158,13 +164,13 @@ public struct InputView: View {
                     focusField = nil
                 }
             }
-            .onChange(of: amountValue) { _, _ in
-                isDimissDisabled = amountValue != String(0)
+            .onChange(of: itemPrice) { _, _ in
+                isDimissDisabled = itemPrice != String(0)
 
-                amountValue.removeAll { String($0) == .comma }
+                itemPrice.removeAll { String($0) == .comma }
 
-                if let value = Int(amountValue) {
-                    amountValue = value.withComma
+                if let value = Int(itemPrice) {
+                    itemPrice = value.withComma
                 }
             }
         }
