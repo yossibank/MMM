@@ -20,12 +20,27 @@ let appIcon = Target.target(
     name: "AppIcon"
 )
 
+let utility = Target.target(
+    name: "Utility"
+)
+
 let mmmData = Target.target(
     name: "MMMData"
 )
 
-let utility = Target.target(
-    name: "Utility"
+let mmmFoundation = Target.target(
+    name: "MMMFoundation",
+    dependencies: [
+        utility
+    ]
+)
+
+let mmmView = Target.target(
+    name: "MMMView",
+    dependencies: [
+        mmmData,
+        mmmFoundation
+    ]
 )
 
 let utilityView = Target.target(
@@ -35,17 +50,10 @@ let utilityView = Target.target(
     ]
 )
 
-let mmmView = Target.target(
-    name: "MMMView",
-    dependencies: [
-        mmmData,
-        utility
-    ]
-)
-
 let inputView = Target.target(
     name: "InputView",
     dependencies: [
+        mmmFoundation,
         mmmView,
         utilityView
     ],
@@ -91,9 +99,9 @@ let mmmTab = Target.target(
 
 // MARK: - Test Package
 
-let utilityTests = Target.testTarget(
-    name: "UtilityTests",
-    dependencies: [utility]
+let mmmFoundationTests = Target.testTarget(
+    name: "MMMFoundationTests",
+    dependencies: [mmmFoundation]
 )
 
 // MARK: - Target
@@ -119,6 +127,7 @@ let package = Package.package(
         inputView,
         listView,
         mmmData,
+        mmmFoundation,
         mmmTab,
         mmmView,
         otherView,
@@ -127,7 +136,7 @@ let package = Package.package(
         utilityView
     ],
     testTargets: [
-        utilityTests
+        mmmFoundationTests
     ]
 )
 

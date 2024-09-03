@@ -1,6 +1,6 @@
 import MMMData
+import MMMFoundation
 import SwiftUI
-import Utility
 
 public struct CalculatorView: View {
     @Binding private var value: String

@@ -1,4 +1,4 @@
-@testable import Utility
+@testable import MMMFoundation
 import XCTest
 
 final class UnwrappedExtensionTests: XCTestCase {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7820C35E2C875C1D00701C66 /* Utility in Frameworks */ = {isa = PBXBuildFile; productRef = 7820C35D2C875C1D00701C66 /* Utility */; };
+		7820C3602C875C2000701C66 /* MMMFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7820C35F2C875C2000701C66 /* MMMFoundation */; };
 		784A753F2C7A2A08002E5FDD /* MMMData in Frameworks */ = {isa = PBXBuildFile; productRef = 784A753E2C7A2A08002E5FDD /* MMMData */; };
 		787A89BE2BDC783E000F4335 /* MMMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A89BD2BDC783E000F4335 /* MMMApp.swift */; };
 		787A89C42BDC783F000F4335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787A89C32BDC783F000F4335 /* Assets.xcassets */; };
@@ -41,11 +43,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				784A753F2C7A2A08002E5FDD /* MMMData in Frameworks */,
+				7820C35E2C875C1D00701C66 /* Utility in Frameworks */,
 				788E7A8A2C7966FD0033A15E /* MMMView in Frameworks */,
 				78CEC4172C78B92600B5EBD1 /* InputView in Frameworks */,
 				78CEC4212C78B92600B5EBD1 /* ReportView in Frameworks */,
 				78CEC4132C78B92600B5EBD1 /* AppDebug in Frameworks */,
 				78CEC4152C78B92600B5EBD1 /* AppIcon in Frameworks */,
+				7820C3602C875C2000701C66 /* MMMFoundation in Frameworks */,
 				78CEC41F2C78B92600B5EBD1 /* OtherView in Frameworks */,
 				78CEC41D2C78B92600B5EBD1 /* MMMTab in Frameworks */,
 				78BDEE982C852995002EF26B /* UtilityView in Frameworks */,
@@ -156,6 +160,8 @@
 				788E7A892C7966FD0033A15E /* MMMView */,
 				784A753E2C7A2A08002E5FDD /* MMMData */,
 				78BDEE972C852995002EF26B /* UtilityView */,
+				7820C35D2C875C1D00701C66 /* Utility */,
+				7820C35F2C875C2000701C66 /* MMMFoundation */,
 			);
 			productName = MMM;
 			productReference = 787A89BA2BDC783E000F4335 /* MMM.app */;
@@ -582,6 +588,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7820C35D2C875C1D00701C66 /* Utility */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Utility;
+		};
+		7820C35F2C875C2000701C66 /* MMMFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMMFoundation;
+		};
 		784A753E2C7A2A08002E5FDD /* MMMData */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MMMData;
