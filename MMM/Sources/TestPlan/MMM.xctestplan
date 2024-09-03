@@ -24,7 +24,13 @@
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
-
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "MMMFoundationTests",
+        "name" : "MMMFoundationTests"
+      }
+    }
   ],
   "version" : 1
 }
