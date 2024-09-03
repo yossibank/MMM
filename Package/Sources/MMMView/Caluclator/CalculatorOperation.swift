@@ -1,6 +1,6 @@
 import Foundation
 
-enum CaluclatorOperation {
+enum CalculatorOperation {
     case add
     case subtract
     case multiply

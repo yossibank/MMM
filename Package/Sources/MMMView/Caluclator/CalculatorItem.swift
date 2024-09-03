@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum CaluclatorItem: String {
+enum CalculatorItem: String {
     case one = "1"
     case two = "2"
     case three = "3"
@@ -44,7 +44,7 @@ enum CaluclatorItem: String {
         }
     }
 
-    static let all: [[CaluclatorItem]] = [
+    static let all: [[CalculatorItem]] = [
         [.clear, .delete, .divide],
         [.seven, .eight, .nine, .mutliply],
         [.four, .five, .six, .subtract],

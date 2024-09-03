@@ -1,64 +1,72 @@
 import SwiftUI
 import Utility
 
-public struct CaluclatorView: View {
+public struct CalculatorView: View {
     @Binding private var value: String
 
-    @State private var tempOperation: CaluclatorOperation = .none
-    @State private var nowOperation: CaluclatorOperation = .none
+    @State private var tempOperation: CalculatorOperation = .none
+    @State private var nowOperation: CalculatorOperation = .none
     @State private var firstNumber = 0
     @State private var secondNumber = 0
 
-    public init(value: Binding<String>) {
+    private let didTapOKButton: () -> Void
+
+    public init(
+        value: Binding<String>,
+        didTapOKButton: @escaping () -> Void
+    ) {
         self._value = value
+        self.didTapOKButton = didTapOKButton
     }
 
     public var body: some View {
-        ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+        GeometryReader { proxy in
+            VStack {
+                Spacer()
 
-            GeometryReader { proxy in
-                VStack {
+                HStack {
                     Spacer()
 
-                    HStack {
-                        Spacer()
+                    Text(value)
+                        .bold()
+                        .font(.title2)
+                        .foregroundStyle(.white)
+                }
+                .padding(.top, 8)
+                .padding(.trailing, 16)
 
-                        Text(value)
-                            .bold()
-                            .font(.title2)
-                            .foregroundStyle(.white)
-                    }
-                    .padding(.top, 8)
-                    .padding(.trailing, 16)
-
-                    ForEach(CaluclatorItem.all, id: \.self) { items in
-                        HStack(spacing: 12) {
-                            ForEach(items, id: \.self) { item in
-                                Button {
+                ForEach(CalculatorItem.all, id: \.self) { items in
+                    HStack(spacing: 12) {
+                        ForEach(items, id: \.self) { item in
+                            Button {
+                                if item == .equal {
+                                    nowOperation == .none
+                                        ? didTapOKButton()
+                                        : didTap(item: item)
+                                } else {
                                     didTap(item: item)
-                                } label: {
-                                    Text(item.rawValue)
-                                        .bold()
-                                        .font(.title)
-                                        .frame(
-                                            width: itemWidth(proxy: proxy, item: item),
-                                            height: itemHeight(proxy: proxy)
-                                        )
-                                        .background(backgroundColor(item: item))
-                                        .foregroundStyle(foregroundColor(item: item))
-                                        .clipShape(.rect(cornerRadius: 16))
                                 }
+                            } label: {
+                                Text(itemTitle(item: item))
+                                    .bold()
+                                    .font(.title)
+                                    .frame(
+                                        width: itemWidth(proxy: proxy, item: item),
+                                        height: itemHeight(proxy: proxy)
+                                    )
+                                    .background(backgroundColor(item: item))
+                                    .foregroundStyle(foregroundColor(item: item))
+                                    .clipShape(.rect(cornerRadius: 20))
                             }
                         }
                     }
                 }
-                .padding(.bottom, 8)
             }
+            .background(.black)
         }
     }
 
-    private func didTap(item: CaluclatorItem) {
+    private func didTap(item: CalculatorItem) {
         switch item {
         case .clear:
             value = "0"
@@ -124,6 +132,8 @@ public struct CaluclatorView: View {
             nowOperation = .none
 
         default:
+            value.removeAll { String($0) == .comma }
+
             let number = item.rawValue
 
             if nowOperation.nowCaluclating {
@@ -145,7 +155,7 @@ public struct CaluclatorView: View {
         }
     }
 
-    private func backgroundColor(item: CaluclatorItem) -> Color {
+    private func backgroundColor(item: CalculatorItem) -> Color {
         switch item {
         case .add:
             tempOperation == .add ? .white : .orange
@@ -164,7 +174,7 @@ public struct CaluclatorView: View {
         }
     }
 
-    private func foregroundColor(item: CaluclatorItem) -> Color {
+    private func foregroundColor(item: CalculatorItem) -> Color {
         switch item {
         case .add:
             tempOperation == .add ? .orange : .white
@@ -183,16 +193,24 @@ public struct CaluclatorView: View {
         }
     }
 
-    private func itemWidth(proxy: GeometryProxy, item: CaluclatorItem) -> CGFloat {
-        if item.isBigWidth {
-            (proxy.size.width - 24) / 2
+    private func itemTitle(item: CalculatorItem) -> String {
+        if item == .equal {
+            nowOperation == .none ? "OK" : item.rawValue
         } else {
-            (proxy.size.width - 48) / 4
+            item.rawValue
+        }
+    }
+
+    private func itemWidth(proxy: GeometryProxy, item: CalculatorItem) -> CGFloat {
+        if item.isBigWidth {
+            (proxy.size.width - 36) / 2
+        } else {
+            (proxy.size.width - 60) / 4
         }
     }
 
     private func itemHeight(proxy: GeometryProxy) -> CGFloat {
-        (proxy.size.width - 64) / 5.6
+        (proxy.size.width - 72) / 6
     }
 }
 
@@ -201,7 +219,7 @@ public struct CaluclatorView: View {
         @State private var value = "0"
 
         var body: some View {
-            CaluclatorView(value: $value)
+            CalculatorView(value: $value) {}
         }
     }
 
