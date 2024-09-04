@@ -224,6 +224,7 @@ public struct InputView: View {
                         isShowCalendar = false
                     }
                 }
+                .id(itemDate)
             }
         }
     }
