@@ -114,7 +114,7 @@ let package = Package.package(
     dependencies: [
         .package(
             url: "https://github.com/nicklockwood/SwiftFormat",
-            from: "0.54.3"
+            from: "0.54.4"
         ),
         .package(
             url: "https://github.com/siteline/swiftui-introspect",
